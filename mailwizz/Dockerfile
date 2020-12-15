@@ -1,5 +1,7 @@
 FROM php:7.2-apache
 RUN apt-get update && apt-get install -y \
+        nano \
+        cron \
         libfreetype6-dev \
         libzip-dev \
         libc-client-dev \

@@ -1,0 +1,133 @@
+MailWizz EMA uses a few external libraries/frameworks, 
+for which i don't assume any credit, all credit/copyright belongs to their respective authors/owners.
+
+The libraries/frameworks list MailWizz EMA use:
+
+Yii Framework
+    This is the backbone of the application, please visit http://www.yiiframework.com for more info.
+    (Source code not modified at all)
+
+QueryPath
+    It is used for email template parsing
+    Please see http://www.querypath.org for more details
+    
+Openwall PHPass
+    It is used to hash the user / customer passwords
+    Please see http://www.openwall.com/phpass/
+    (Source code not modified at all)
+
+Php Thumbnailer
+    It is used for manipulating images.
+    Please see http://phpthumb.gxdlabs.com/ for more details
+    (Source code not modified at all)
+    
+Swift mailer
+    It is used to deliver the emails
+    Please see http://www.swiftmailer.org for more details
+    Source code slightly changed: 
+    - Changed the file /SwiftMailer/lib/classes/Swift/Mime/Headers/MailboxHeader.php 
+      at line 347 and commented the body of the _assertValidAddress method.
+
+PHPMailer (since 1.3.4.2)
+    It is used to deliver the emails
+    Please see https://github.com/PHPMailer/PHPMailer for more details
+    (Source code not modified at all)
+          
+Urify
+    It is used to create nice slugs
+    Please see https://github.com/jbroadway/urlify for more details
+    (Source code not modified at all)
+    
+Bounce handler
+    It is used to process bounced emails
+    Please see https://github.com/twisted1919/bounce-handler for more details
+    (Source code modified)
+    
+Twitter Bootstrap
+    The CSS framework for the application
+    Please see http://www.getbootstrap.com/ for more details
+    (Source code not modified at all)
+    
+jQuery
+    The JS framework for the application
+    Please see http://www.jquery.com for more details
+    (Source code not modified at all)
+    
+Datetime picker
+    Used in customer area
+    Please see https://github.com/smalot/bootstrap-datetimepicker for more details
+    (Source code not modified at all)
+
+Date picker
+    Used in customer and frontend area
+    Please see https://github.com/eternicode/bootstrap-datepicker for more details
+    (Source code not modified at all)
+    
+Color picker
+    Used in backend, customer and frontend area
+    Please see https://github.com/itsjavi/bootstrap-colorpicker/ for more details
+    (Source code not modified at all)
+        
+Html2canvas
+    It is used to take screenshots from templates
+    Please see http://html2canvas.hertzen.com for more details
+    (Source code not modified at all)
+
+
+Codeigniter Framework
+    The CI_Security class is incorporated to sanitize the global variables.
+    Please see http://ellislab.com/codeigniter/ for more details
+    (Small changes to the source code with proper notes as required by Codeigniter license)
+    
+CKEDITOR
+    It is used to edit the html templates/articles/etc
+    Please see http://www.ckeditor.com/ for more details
+    Extra plugins used:
+        codemirror for syntax highlighting (please see http://codemirror.net/ for more details)
+    (Source code not modified at all)
+    
+ElFinder (since 1.2)
+    CKeditor File manager
+    Please see https://github.com/Studio-42/elFinder
+    (Source code not modified at all)
+    
+Mobile-Detect (since 1.2)
+    A small php library to detect if the user agent comes from mobile, tablet or desktop
+    Please see https://github.com/serbanghita/Mobile-Detect
+    (Source code not modified at all)
+    
+GMaps.js (since 1.2)
+    A small js library to embed google maps
+    Please see http://hpneo.github.com/gmaps/
+    (Source code not modified at all)
+    
+Html2Text (since 1.3.1)
+    A library that will transform html email to plain text
+    Please see https://github.com/mtibben/html2text/
+    (Source code modified pretty much)
+
+Invoicr (since 1.3.4.7)
+    A library to generate PDF files
+    Please see http://codecanyon.net/item/invoicr-php-class-for-beautiful-invoices/8829220
+    (Source code modified a lot)
+
+Cron Expressions (since 1.3.5.3)
+    https://github.com/mtdowling/cron-expression
+    (Source code not modified at all)
+
+JQCron (since 1.3.5.3)
+    https://github.com/arnapou/jqcron
+    (Source code not modified at all)
+    
+Flexslider (since 1.3.6.3)
+    https://www.woothemes.com/flexslider/
+    (Source code not modified at all)
+    
+Country flags (since 1.4.5)
+    https://github.com/hjnilsson/country-flags
+    
+jQuery Pulsate (since 1.5.1)
+    https://kilianvalkhof.com/jquerypulsate/
+    
+Strftime (since 1.5.2)
+    http://hacks.bluesmoon.info/strftime/index.html

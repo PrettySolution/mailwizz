@@ -1,0 +1,19 @@
+{
+    "require": {
+        "php": ">=5.3, <5.4",
+        "mandrill/mandrill": "1.0.*",
+        "dyninc/dyn-php": "^0.9",
+        "mtdowling/cron-expression": "1.*",
+        "php-amqplib/php-amqplib": "2.5.*",
+        "phpseclib/phpseclib": "2.*",
+        "twig/twig": "~1.0",
+        "mailin-api/mailin-api-php": "^1.0",
+        "tipimail/tipimail": "^0.1",
+        "arvenil/ninja-mutex": "^0.6.0",
+        "predis/predis": "^1.1",
+        "doctrine/cache": "^1.5",
+        "nesbot/carbon": "~1.18",
+        "jeroendesloovere/vcard": "^1.7",
+        "monolog/monolog": "^1.25"
+    }
+}

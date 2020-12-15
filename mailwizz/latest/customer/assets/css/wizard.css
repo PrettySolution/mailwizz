@@ -1,0 +1,156 @@
+/*
+Copyright (C) 2012, ExactTarget, Inc.
+All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in the
+Software without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
+and to permit persons to whom the Software is furnished to do so, subject to the
+following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+====================================================================
+*/
+.wizard {
+  background-color: #f9f9f9;
+  border: 2px solid #ffffff;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  *zoom: 1;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+}
+
+.wizard:before,
+.wizard:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.wizard:after {
+  clear: both;
+}
+
+.wizard ul {
+  padding: 0;
+  margin: 0;
+  list-style: none outside none;
+}
+
+.wizard ul li {
+  position: relative;
+  float: left;
+  height: 46px;
+  padding: 0 20px 0 30px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 46px;
+  color: #999999;
+  cursor: default;
+  background: #EBEBEB;
+}
+
+.wizard ul li .chevron {
+  position: absolute;
+  top: -1px;
+  right: -14px;
+  display: block;
+  border: 24px solid transparent;
+  border-right: 0;
+  border-left: 14px solid #ffffff;
+}
+
+.wizard ul li .chevron:before {
+  position: absolute;
+  top: -24px;
+  right: 1px;
+  display: block;
+  border: 24px solid transparent;
+  border-right: 0;
+  border-left: 14px solid #EBEBEB;
+  content: "";
+}
+
+.wizard ul li.complete {
+  color: #367fa9;
+  background: #367fa9;
+}
+
+.wizard ul li.complete .chevron:before {
+  border-left: 14px solid #367fa9;
+}
+
+.wizard ul li.complete a {
+	color: #ffffff;
+}
+
+.wizard ul li.active {
+  color: #367fa9;
+  background: #ffffff;
+}
+
+.wizard ul li.active .chevron:before {
+  border-left: 14px solid #ffffff;
+}
+
+.wizard ul li:nth-child(1) {
+  z-index: 10;
+  padding-left: 20px;
+  border-radius: 4px 0 0 4px;
+}
+
+.wizard ul li:nth-child(2) {
+  z-index: 9;
+}
+
+.wizard ul li:nth-child(3) {
+  z-index: 8;
+}
+
+.wizard ul li:nth-child(4) {
+  z-index: 7;
+}
+
+.wizard ul li:nth-child(5) {
+  z-index: 6;
+}
+
+.wizard ul li:nth-child(6) {
+  z-index: 5;
+}
+
+.wizard ul li:nth-child(7) {
+  z-index: 4;
+}
+
+.wizard ul li:nth-child(8) {
+  z-index: 3;
+}
+
+.wizard ul li:nth-child(9) {
+  z-index: 2;
+}
+
+.wizard ul li:nth-child(10) {
+  z-index: 1;
+}
+
+.wizard .actions {
+  float: right;
+  padding-right: 15px;
+  line-height: 44px;
+  vertical-align: middle;
+}

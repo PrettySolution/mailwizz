@@ -1,0 +1,15 @@
+#start-page .start-page-wrapper {
+    padding: 20px;
+    border: 1px solid #eeeeee;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#start-page .icon {
+    font-size: 60px;
+}
+
+#start-page h3 {
+    margin-top: 0px;
+}

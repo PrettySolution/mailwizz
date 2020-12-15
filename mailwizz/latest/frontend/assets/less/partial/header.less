@@ -1,0 +1,143 @@
+
+header {
+
+  &.navbar {
+    margin-bottom: 0;
+  }
+
+  &.navbar-default {
+    //background-color: @colorBlueLight;
+    background-color: @colorWhite;
+    border-color: @headerBorder;
+
+    border-radius: 0;
+    border-width: 0 0 1px;
+
+    .navbar-toggle {
+      margin-top: 3px;
+      margin-right: -10px;
+      border-color: @colorBlue;
+
+      &:hover, &:focus {
+        background-color: @headerBorder;
+      }
+
+      .icon-bar {
+        background-color: @colorBlue;
+      }
+    }
+
+    .navbar-collapse {
+      border-color: @headerBorder;
+      //padding-right: 0;
+      //padding-left: 0;
+      margin: 0 -15px;
+
+      .navbar-nav {
+        margin: 0 -15px;
+        overflow: hidden;
+      }
+    }
+
+    .navbar-brand {
+      padding: 0;
+
+      span {
+        display: table;
+        height: 100%;
+        padding: 0 20px 0 0;
+
+        span {
+          height: auto;
+          display: table-cell;
+          vertical-align: middle;
+          padding: 5px 0 5px 0;
+
+          font-size: 40px;
+        }
+      }
+
+      > img {
+        padding: 8px 25px 6px 15px;
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    .navbar-nav {
+      margin: 0 -15px;
+
+      @media @tablet {
+        margin: 0;
+      }
+
+      > li {
+
+        a {
+          color: @colorGrey;
+          padding: 10px 15px;
+
+          @media @tablet {
+            padding: 15px 15px;
+          }
+
+          &:hover {
+            color: @colorBlue;
+          }
+
+          &.btn {
+            padding-top: 6px;
+            padding-bottom: 6px;
+
+            @media @tablet {
+              margin-top: 8px;
+              padding-top: 6px;
+              padding-bottom: 6px;
+            }
+          }
+        }
+
+        &.active {
+
+          a {
+            color: @colorWhite;
+            background-color: @colorBlue50;
+
+            &:hover {
+              color: @colorWhite;
+              background-color: @colorBlue50;
+            }
+          }
+        }
+
+        &.dropdown {
+
+          a {
+            &.dropdown-toggle {
+
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+}
+
+/////////////////////
+
+body {
+  &.ctrl-lists {
+    header {
+      display: none;
+    }
+
+    &.act-block_address {
+      header {
+        display: block;
+      }
+    }
+
+  }
+}

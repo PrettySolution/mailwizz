@@ -1,0 +1,709 @@
+
+body {
+  font-family: @fontBase;
+  color: @colorGrey;
+  background-color: @colorWhite;
+}
+
+.content-wrapper {
+  background-color: @colorWhite;
+  padding: 30px 0 0 0;
+}
+
+h1, h2 h3, h4, h5 {
+  font-family: @fontHeading;
+  //color: @colorBlack;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+/////////////////////////
+
+.ctrl-site {
+  &.act-index {
+    .row-large {
+      margin-left: 0!important;
+      margin-right: 0!important;
+    }
+
+    .content {
+      padding: 0!important;
+    }
+    .container-fluid-large {
+      width:100%!important;
+      padding-left: 0;
+      padding-right: 0;
+      left: 0!important;
+    }
+  }
+}
+
+h1 {
+  &.page-heading {
+    padding-top: 0;
+    margin-top: 0;
+    font-size: 30px;
+
+    small {
+      font-size: 12px;
+    }
+  }
+}
+
+.related-articles {
+  margin-top: 10px;
+
+  .article {
+    margin-bottom: 10px;
+    font-size: 12px;
+    border-bottom: 1px dotted #c2c2c2;
+    padding-bottom:5px;
+    min-height: 90px;
+    border-right:1px dotted #c2c2c2;
+
+    .title {
+      font-size: 13px;
+    }
+
+    .excerpt {
+      font-size:12px;
+    }
+  }
+}
+
+.list-articles {
+
+  .article {
+    margin-bottom: 10px;
+    font-size: 12px;
+    border-bottom: 1px dotted #c2c2c2;
+    padding-bottom:10px;
+    padding-right: 10px;
+    min-height: 90px;
+    border-right:1px dotted #c2c2c2;
+
+    .title {
+      font-size: 13px;
+    }
+
+    .excerpt, .categories {
+      font-size:12px;
+    }
+  }
+}
+
+
+/////////////////////////
+
+.hide_overflow {
+  overflow: hidden;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.section {
+  padding: 20px 0 20px 0;
+  position: relative;
+  //overflow: hidden;
+
+  @media @desktop {
+    padding: 20px 0 20px 0;
+  }
+
+  h2 {
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.6875;
+    font-weight: normal;
+
+    a {
+      color: @colorBlue;
+    }
+
+    + p {
+      padding-top: 10px;
+
+      @media @desktop {
+        padding-top: 15px;
+      }
+    }
+  }
+
+  .bg_image {
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transition: all 0.5s ease-in;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  &.section_welcome {
+    padding-top: 20px;
+    min-height: 400px;
+
+    @media @tablet {
+      padding-top: 80px;
+      min-height: 400px;
+    }
+
+    @media @desktop {
+      padding-top: 150px;
+      min-height: 800px;
+      text-align: center;
+    }
+
+    .bg_image {
+      top: 20px;
+      height: 350px;
+      margin-left:0;
+
+      @media @tablet {
+        top: 20px;
+        height: 400px;
+        margin-left: 0;
+      }
+
+      @media @desktop {
+        top: 100px;
+        height: 600px;
+        left: auto;
+        right: -45px;
+        margin-left: 0;
+      }
+
+      @media @desktop-lg {
+        margin-left: 0;
+        right: -45px;
+      }
+
+      img {
+        height: 100%;
+        width: auto;
+        visibility: hidden;
+      }
+    }
+
+    h1 {
+      position: relative;
+      //color: @colorBlue;
+      font-size: 40px;
+      //line-height: 50px;
+      //font-weight: 400;
+      padding-bottom: 20px;
+
+      @media @desktop {
+        font-size: 60px;
+        //line-height: 60px;
+        padding-bottom: 30px;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 150px;
+        height: 1px;
+        background: @colorGrey;
+        display: block;
+
+        @media @desktop {
+          left: 50%;
+          width: 200px;
+          margin-left: -100px;
+        }
+      }
+
+      span {
+        display: block;
+        //position: relative;
+        //display: block;
+        //font-size: 28px;
+        //font-weight: 400;
+        //
+        //@media @desktop {
+        //  font-size: 40px;
+        //  line-height: 48px;
+        //}
+      }
+
+      + p {
+        padding-top: 25px;
+
+        @media @desktop {
+          padding-top: 50px;
+        }
+      }
+
+      + .btn {
+        margin-top: 30px;
+
+        @media @desktop {
+          margin-top: 40px;
+        }
+      }
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6875;
+      font-weight: normal;
+      margin: 0 auto;
+
+      @media @desktop {
+        max-width: 700px;
+      }
+
+      + .btn {
+        margin-top: 30px;
+
+        @media @desktop {
+          margin-top: 40px;
+        }
+      }
+    }
+
+    .btn {
+
+      @media @desktop {
+        font-size: 16px;
+        line-height: 1.6875;
+        padding: 10px 30px;
+      }
+
+      + p {
+        margin-top: 30px;
+
+        @media @desktop {
+          margin-top: 40px;
+        }
+      }
+    }
+
+    .desc {
+      text-align: left;
+      padding-top: 50px;
+
+      @media @desktop {
+        padding-top: 80px;
+      }
+
+      h2 {
+        position: relative;
+        color: @colorBlue;
+        font-size: 22px;
+        line-height: 28px;
+        font-weight: 300;
+        padding-bottom: 10px;
+
+        @media @desktop {
+          font-size: 28px;
+          line-height: 36px;
+          padding-bottom: 20px;
+        }
+
+        span {
+          font-weight: 400;
+        }
+      }
+
+      ul {
+        list-style: none;
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+
+        &:before, &:after {
+          display: table;
+          content: " ";
+        }
+        &:after {
+          clear: both;
+        }
+
+        li {
+          float: left;
+          width: 50%;
+          font-size: 16px;
+          padding-bottom: 5px;
+
+          @media @desktop {
+            font-size: 18px;
+            padding-bottom: 10px;
+          }
+
+          .fa {
+            margin-right: 10px;
+            font-size: 22px;
+            color: @colorBlue50;
+          }
+        }
+      }
+
+      img {
+        max-width: 180px;
+        width: 100%;
+        height: auto;
+
+        @media @desktop {
+          max-width: 220px;
+        }
+      }
+    }
+
+  }
+
+  &.section_why {
+    padding: 20px 0 80px 0;
+    //background-color: @colorBlue05;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-position: -300px center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 400px;
+
+    @media @tablet {
+      padding: 50px 0 50px 0;
+      background-position: -50px center;
+    }
+
+    @media @desktop {
+      min-height: 500px;
+      background-position: left center;
+    }
+
+    .bg_image {
+      bottom: 0;
+      left: 30%;
+      height: 250px;
+
+      @media @tablet {
+        top: 150px;
+        bottom: auto;
+        left: 0;
+        height: 500px;
+        margin-top: -130px;
+        margin-left: -200px;
+      }
+
+      @media @desktop {
+        top: 100px;
+        bottom: auto;
+        height: 600px;
+        margin-top: -170px;
+        margin-left: -200px;
+      }
+
+      @media @desktop-lg {
+        margin-left: -250px;
+      }
+
+      img {
+        height: 100%;
+        width: auto;
+        visibility: hidden;
+      }
+    }
+
+    h1 {
+      position: relative;
+      color: @colorBlue;
+      font-size: 40px;
+      line-height: 50px;
+      font-weight: 300;
+      padding-bottom: 20px;
+
+      @media @desktop {
+        font-size: 48px;
+        line-height: 56px;
+        padding-bottom: 30px;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 1px;
+        background: @colorGrey;
+        display: block;
+
+        @media @desktop {
+          width: 50px;
+        }
+      }
+
+      span {
+        font-weight: 400;
+      }
+
+      + p {
+        padding-top: 20px;
+
+        @media @desktop {
+          padding-top: 30px;
+        }
+      }
+    }
+
+    p {
+      //max-width: 450px;
+
+      @media @desktop {
+        max-width: 90%;
+      }
+    }
+
+    .image_wrapper {
+      max-width: 800px;
+      margin: 20px auto 20px auto;
+
+      @media @tablet {
+        margin: 40px 0 20px 0;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border: 1px solid @colorGrey50;
+      }
+    }
+
+  }
+
+  &.section_support {
+    padding: 20px 0 100px 0;
+    min-height: 300px;
+
+    @media @desktop {
+      text-align: center;
+      padding: 100px 0 230px 0;
+    }
+
+    .bg_image {
+      bottom: 20%;
+      left: 50%;
+      height: 250px;
+      -webkit-transform: translate(-50%, 100%);
+      transform: translate(-50%, 100%);
+
+      @media @tablet {
+        bottom: 30%;
+        height: 250px;
+      }
+
+      @media @desktop {
+        height: 400px;
+      }
+
+      @media @desktop-lg {
+
+      }
+
+      img {
+        height: 100%;
+        width: auto;
+        visibility: hidden;
+      }
+    }
+
+    h1 {
+      position: relative;
+      color: @colorBlue;
+      font-size: 40px;
+      line-height: 50px;
+      font-weight: 300;
+      padding-bottom: 20px;
+
+      @media @desktop {
+        font-size: 48px;
+        line-height: 56px;
+        padding-bottom: 30px;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 150px;
+        height: 1px;
+        margin-left: -75px;
+        background: @colorGrey;
+        display: block;
+
+        @media @desktop {
+          width: 200px;
+          margin-left: -100px;
+        }
+      }
+
+      span {
+        position: relative;
+        display: block;
+        font-size: 28px;
+        line-height: 36px;
+        font-weight: 400;
+
+        @media @desktop {
+          font-size: 36px;
+          line-height: 42px;
+        }
+      }
+
+      + p {
+        padding-top: 20px;
+
+        @media @desktop {
+          padding-top: 30px;
+        }
+      }
+    }
+
+    .image_wrapper {
+      max-width: 800px;
+      margin: 20px auto 20px auto;
+
+      @media @tablet {
+        margin: 40px auto 20px auto;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border: 1px solid @colorGrey50;
+      }
+    }
+
+  }
+
+  &.section_contact {
+    text-align: center;
+    padding: 80px 0 100px 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 300px;
+
+    @media @desktop {
+      padding: 100px 0 130px 0;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 150px;
+      height: 1px;
+      background: @colorGrey;
+      display: none;
+
+      @media @desktop {
+        left: 50%;
+        width: 25%;
+        margin-left: -12.5%;
+      }
+    }
+
+    h2 {
+      position: relative;
+      color: @colorWhite;
+      padding-bottom: 20px;
+
+      @media @desktop {
+        padding-bottom: 30px;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 150px;
+        height: 1px;
+        margin-left: -75px;
+        background: @colorWhite;
+        display: block;
+
+        @media @desktop {
+          width: 200px;
+          margin-left: -100px;
+        }
+      }
+
+      span {
+        position: relative;
+        display: block;
+        font-size: 28px;
+        line-height: 36px;
+        font-weight: 400;
+
+        @media @desktop {
+          font-size: 36px;
+          line-height: 42px;
+        }
+      }
+
+      + p {
+        padding-top: 20px;
+
+        @media @desktop {
+          padding-top: 30px;
+        }
+      }
+
+      + .btn {
+        margin-top: 30px;
+
+        @media @desktop {
+          margin-top: 40px;
+        }
+      }
+    }
+
+    p {
+      color: @colorWhite;
+
+      + .btn {
+        margin-top: 30px;
+
+        @media @desktop {
+          margin-top: 40px;
+        }
+      }
+    }
+
+    .btn {
+
+      @media @desktop {
+        font-size: 20px;
+        padding: 10px 30px;
+      }
+
+      &.btn-default {
+        border-color: transparent;
+      }
+    }
+
+  }
+
+}

@@ -1,0 +1,8 @@
+__MACOSX
+.DS_Store
+.idea
+docker/phpcsfixer
+docker/phpstan
+docker/phpunit
+web/vendor
+web/tests

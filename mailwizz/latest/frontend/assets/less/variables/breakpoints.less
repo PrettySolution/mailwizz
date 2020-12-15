@@ -1,0 +1,62 @@
+
+// Extra small screen / phone
+@screen-xs:                  480px;
+@screen-xs-min:              @screen-xs;
+@screen-phone:               @screen-xs-min;
+
+// Small screen / tablet
+@screen-sm:                  768px;
+@screen-sm-min:              @screen-sm;
+@screen-tablet:              @screen-sm-min;
+
+// Medium screen / desktop
+@screen-md:                  992px;
+@screen-md-min:              @screen-md;
+@screen-desktop:             @screen-md-min;
+
+// Large screen / wide desktop
+@screen-lg:                  1200px;
+@screen-lg-min:              @screen-lg;
+@screen-lg-desktop:          @screen-lg-min;
+
+// Large screen / wide desktop
+@screen-xl:                  1400px;
+@screen-xl-min:              @screen-xl;
+@screen-xl-desktop:          @screen-xl-min;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max:              (@screen-sm-min - 1);
+@screen-sm-max:              (@screen-md-min - 1);
+@screen-md-max:              (@screen-lg-min - 1);
+@screen-lg-max:              (@screen-xl-min - 1);
+
+// Media Queries
+@screen:                     screen;
+
+// Mobile first
+@phone:                      ~"only screen and (min-width: @{screen-xs-min})";
+@tablet:                     ~"only screen and (min-width: @{screen-sm-min})";
+@desktop:                    ~"only screen and (min-width: @{screen-md-min})";
+@desktop-lg:                 ~"only screen and (min-width: @{screen-lg-min})";
+@desktop-xl:                 ~"only screen and (min-width: @{screen-xl-min})";
+
+// Desktop first
+//@phone:                      ~"only screen and (max-width: @{screen-xs-max})";
+//@tablet:                     ~"only screen and (max-width: @{screen-sm-max})";
+//@desktop:                    ~"only screen and (max-width: @{screen-md-max})";
+
+@media @desktop-xl {
+
+}
+@media @desktop-lg {
+
+}
+@media @desktop {
+
+}
+@media @tablet {
+
+}
+@media @phone {
+
+}

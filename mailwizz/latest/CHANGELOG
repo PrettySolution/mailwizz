@@ -1,0 +1,1695 @@
+--- -------------------------------------------
+--- Version 1.9.4 - 2020-01-06
+--- -------------------------------------------
+[BUG] - Fix sending empty emails in DailyCommand::handleScheduledInactiveCustomers when no customers match criteria
+
+--- -------------------------------------------
+--- Version 1.9.3 - 2020-01-03
+--- -------------------------------------------
+[ADD] - Added ability to set the cache adapter for list counters via 'lists.counters.cache.adapter' app param 
+[MSC] - Small fixes overall 
+
+--- -------------------------------------------
+--- Version 1.9.2 - 2019-12-24
+--- -------------------------------------------
+[CHG] - All providers that do click/open tracking are now allowed to do so, we do not suppress this anymore  
+[MSC] - Small fixes overall 
+
+--- -------------------------------------------
+--- Version 1.9.1 - 2019-12-02
+--- -------------------------------------------
+[ADD] - Added ability to deactivate customer account on certain date  
+[ENH] - Changing the customer status to any status but active will log the customer out instantly  
+[MSC] - Small fixes overall 
+
+--- -------------------------------------------
+--- Version 1.9.0 - 2019-12-02
+--- -------------------------------------------
+[ADD] - Added following columns to basic export for campaigns: send_at, started_at, finished_at, date_added, last_updated
+[MSC] - Small fixes overall 
+
+--- -------------------------------------------
+--- Version 1.8.9 - 2019-11-19
+--- -------------------------------------------
+[BUG] - During list import, empty columns would be allowed. It's fixed now  
+
+--- -------------------------------------------
+--- Version 1.8.8 - 2019-11-19
+--- -------------------------------------------
+[ENH] - Delivery servers are now removed in background  
+[ENH] - PHP 5.6 got it's own vendor folder for version specific packages  
+[BUG] - Fix an issue in SendGrid where we couldn't create webhooks anymore 
+[ENH] - We can now select between the EU and US geo regions for SparkPost
+[BUG] - Fixed a bug where the customer object was accessed in backend area causing errors at list deletion  
+[ENH] - Improved a few slow bounce regex rules  
+[ENH] - Improved the processing speed for bounce handler, fbl handler and email box monitors handler
+[ADD] - Added specific cache component to save the data to database 
+[BUG] - Fixed a bug where the list counters would get out of sync
+[BUG] - Email Box Monitor conditions would insert an empty new row each save  
+
+--- -------------------------------------------
+--- Version 1.8.7 - 2019-10-21
+--- -------------------------------------------
+[ADD] - Added customer_price_plans_before_payment_handler_process_order action hook  
+[ADD] - Added customer_price_plans_after_payment_handler_process_order action hook  
+[BUG] - Fix a bug where RANDOM_CONTENT was not parsed when many tags one after another  
+[GHG] - Automatically adjustment for the number of campaigns at once is now enabled by default in new installs  
+
+--- -------------------------------------------
+--- Version 1.8.6 - 2019-09-30
+--- -------------------------------------------
+[CHG] - Because of dependencies, mailgun delivery server type now requires php >= 7.0  
+[BUG] - Fix an issue in AppInitHelper::simpleCurlPost() which broke html encoding  
+
+--- -------------------------------------------
+--- Version 1.8.5 - 2019-09-26
+--- -------------------------------------------
+[ADD] - Added 'campaign_get_status_with_stats' filter hook 
+[ADD] - Added 'servers_imap_connection_string_search_replace_params' filter hook 
+[BUG] - Fix an issue where REMOTE_CONTENT tag was not parsed in the campaign headers/footers 
+[ADD] - Added ability for bounce / fbl and email box monitors to look in more than one email box
+[ADD] - Added INBOX / JUNK / SPAM as the default email boxes to search in for bounce / fbl / email box monitors
+[ADD] - Added 'servers.imap.search.mailboxes' app param to easily control default email boxes for bounce / fbl / email box monitors
+[BUG] - Fixed an issue where the [DATE] and [DATETIME] tags for campaigns did not parse in the correct timezone  
+[MSC] - Small fixes overall
+
+--- -------------------------------------------
+--- Version 1.8.4 - 2019-08-07
+--- -------------------------------------------
+[IMP] - Improved CampaignOpenUserAgentsWidget (thanks @lauwens)  
+[ADD] - Added price_plan_order_generate_pdf_invoice filter hook with $invoice and $order params
+[IMP] - RANDOM_CONTENT in email body handles tags better  
+[ADD] - Added ability to copy price plans  
+[CHG] - When explicitly selecting delivery servers for campaign sending do not allow to use other servers than the ones selected
+[ADD] - Added after_list_created_list_default_fields action hook  
+ 
+--- -------------------------------------------
+--- Version 1.8.3 - 2019-07-18
+--- -------------------------------------------
+[BUG] - Fix inability to copy surveys  
+
+--- -------------------------------------------
+--- Version 1.8.2 - 2019-07-18
+--- -------------------------------------------
+[IMP] - Improved tracking domains handling for url transformation
+[ADD] - Added surveys responder action logs
+[ENH] - Campaign activity map will show up in shared campaigns as well  
+[BUG] - Fix a race condition in the RSS/JSON parser for campaigns when fetching remote items  
+[ADD] - Added ability to stop the autoresponder series automatically for contacts who reply to any of the sequence emails
+[BUG] - Fix a issue where search results for surveys would return 404 pages
+[MSC] - Small fixes overall
+ 
+--- -------------------------------------------
+--- Version 1.8.1 - 2019-07-10
+--- -------------------------------------------
+[BUG] - Fix broken breadcrumbs for numeric labels  
+[BUG] - Fix "empty" values handling in custom fields submissions for lists  
+[ADD] - Added API ability to create subscribers in bulk  
+[ENH] - Add comments for proper default value format for date and datetime custom fields for lists  
+[ENH] - If uploading a file for campaign attachments fails, we'll add a notification with the failure reason  
+[ADD] - Added email field type for email lists custom fields    
+[ADD] - Added url field type for email lists custom fields   
+[ADD] - Added phone number field type for email lists custom fields    
+[ADD] - Added rating field type for email lists custom fields   
+[ADD] - Added basic survey functionality
+
+--- -------------------------------------------
+--- Version 1.8.0 - 2019-06-27
+--- -------------------------------------------
+[ENH] - Improve SendCampaignsCommand to avoid sending dupes when a combination of slow Redis and dynamic limit was set  
+[ADD] - Added copy_customer_email_template action hook
+[MSC] - Small fixes overall
+
+--- -------------------------------------------
+--- Version 1.7.9 - 2019-06-25
+--- -------------------------------------------
+[ADD] - Added {app}_model_{modelclass}_before_savestatus action hook. Params: $this 
+[ADD] - Added {app}_model_{modelclass}_after_savestatus action hook. Params: $this, $result 
+[ADD] - Added BaseActiveRecord::buildHookName to easily build hook names for AR models  
+[SEC] - Added more checks against images to prevent uploading unwanted files interpreted as images  
+[ADD] - Added new model and settings area for delete logs 
+[CHG] - Delete campaign delivery logs setting has been moved into OptionCronDeleteLogs model instead of OptionCronDelivery
+[ADD] - Added ability to remove bounce logs beside campaign delivery logs. Backend > Settings > Cron
+[ENH] - Bounce logs can now be replaced by static counters if "Delete bounce logs" = Yes in Backend > Settings > Cron 
+[ENH] - Open logs can now be replaced by static counters if "Delete open logs" = Yes in Backend > Settings > Cron 
+[ENH] - Click logs can now be replaced by static counters if "Delete click logs" = Yes in Backend > Settings > Cron 
+[ENH] - After list import for customer suppression list, we will also update the list last update attribute
+[MSC] - Small fixes overall
+
+--- -------------------------------------------
+--- Version 1.7.8 - 2019-06-10
+--- -------------------------------------------
+[ADD] - Added ability to track phone links(tel:123123123) and email links(mailto:abc@example.com)  
+[ENH] - Delivery servers assigned for lists and campaigns usage, can now be used for their tests as well  
+
+--- -------------------------------------------
+--- Version 1.7.7 - 2019-06-03
+--- -------------------------------------------
+[BUG] - Fixed a bug where UTM tags were not properly added to links  
+[IMP] - Use via.placeholder.com instead of placeholdit.imgix.net for placeholder images
+[ADD] - Added [FUTURE_DAYS_X] and [BIRTHDAY_FUTURE_DAYS_X] tags  
+[CHG] - Switched to PHPMailer 6.x which now requires PHP >= 5.5. If PHP < 5.5, fallback silently on using SwiftMailer
+[UPD] - Updated ElFinder  
+[UPD] - Updated SwiftMailer
+ 
+--- -------------------------------------------
+--- Version 1.7.6 - 2019-05-15
+--- -------------------------------------------
+[ADD] - Added [CAMPAIGN_VCARD_URL] tag which produces a url to download vcard details based on campaign info   
+[ADD] - Added [LIST_VCARD_URL] tag which produces a url to download vcard details based on list info 
+[ADD] - DeleteInactiveSubscribersCommand can now do count only to check before removal  
+[ADD] - Added Postal Web API delivery server type. Requires PHP >= 5.4
+[BUG] - Fix a bug where the subject tags were not parsed for plain text campaigns
+[ADD] - Added BackendDashboardCacheCommand (backend-dashboard-cache) which can be used to pre-populate the backend dashboard stats cache
+[ADD] - Added ID and Unique ID in backend > customers area  
+[ADD] - Added price_plan_order_before_calculate_totals and price_plan_order_after_calculate_totals filter hooks
+[BUG] - If tracking links contained twig tags, these tags were not parsed  
+[CHG] - Changed following delivery server columns to 255 bytes length: name / hostname / username / from_email / from_name / reply_to_email 
+[ADD] - Added ability to resend to giveups manually from the web interface  
+[ADD] - Added ability to share campaigns between accounts by generating and using share codes  
+[CHG] - Better email notification for list import from CLI
+[ADD] - Added the segment name in the new list name when sending a campaign to multiple lists and merging them together
+[ADD] - Added redirect_url_after_impersonate_customer filter hook to be able to change the url where admins are redirected after impersonate 
+[IMP] - Make sure the mutex and cache keys are unique per application  
+
+--- -------------------------------------------
+--- Version 1.7.5 - 2019-04-03
+--- -------------------------------------------
+[BUG] - Fix open basedir error for CommonHelper::findPhpCliPath  
+
+--- -------------------------------------------
+--- Version 1.7.4 - 2019-04-01
+--- -------------------------------------------
+[ADD] - Added PHP version warning. It's time to move on from php 5.x  
+[ADD] - Added frontend page where subscribers can unsubscribe from all of the lists of a certain customer  
+[ADD] - Added the [UNSUBSCRIBE_FROM_CUSTOMER_URL] and [UNSUBSCRIBE_FROM_CUSTOMER_LINK] tags for the above page  
+[CHG] - 2FA uses local uri instead of the initial google uri
+[ADD] - Added new option for RSS/JSON: send-only-unique-items  
+[MSC] - Small fixes overall 
+ 
+--- -------------------------------------------
+--- Version 1.7.3 - 2019-02-28
+--- -------------------------------------------
+[ADD] - Added ability to delete opens/clicks per campaign basis  
+[ENH] - Command line CSV subscribers import will split larger than 10k lists into multiple at most 10k records per list
+[ENH] - Command line CSV email blacklist import will split larger than 10k lists into multiple at most 10k records per list
+[ADD] - Added bulk confirm action for "Block email requests"  
+[ADD] - Added "Search by custom fields" for list subscribers API endpoint
+[BUG] - SyncListsCustomFieldsCommand would treat 0 as empty value for default list value , fixed now, 0 is 0
+
+--- -------------------------------------------
+--- Version 1.7.2 - 2019-01-21
+--- -------------------------------------------
+[MSC] - Small fixes overall 
+
+--- -------------------------------------------
+--- Version 1.7.1 - 2019-01-21
+--- -------------------------------------------
+[BUG] - Fix case sensitive in years range field type  
+[IMP] - Trim the search term in search extension  
+
+--- -------------------------------------------
+--- Version 1.7.0 - 2019-01-21
+--- -------------------------------------------
+[ADD] - Added a new list field type: Years Range  
+[ADD] - Recaptcha extension can now be disabled per list basis  
+[ADD] - Added search extension to search entire application in backend and customer area  
+[MSC] - Small fixes overall 
+
+--- -------------------------------------------
+--- Version 1.6.9 - 2018-12-14
+--- -------------------------------------------
+[BUG] - Fix hidden space character that could break twig  
+[BUG] - Error while saving transactional email logs because of missing FK value  
+
+--- -------------------------------------------
+--- Version 1.6.8 - 2018-12-12
+--- -------------------------------------------
+[BUG] - Fix preheader issue with dollar signs  
+[ADD] - Added ability for AR to send only if certain campaign has been opened  
+[ADD] - Added ability for campaign to send webhook requests when a campaign is opened
+[ADD] - Added ability for campaign to send webhook requests when a link in campaign is clicked 
+[ADD] - Added option to enable/disable campaign webhooks from Backend > Settings > Campaigns > Webhooks
+[ADD] - Added confirmation window for all filter actions from All Subscribers area of lists  
+[ADD] - Added mySMTP.com delivery server type  
+[ADD] - Added [SIGN_LT] / [SIGN_LTE] / [SIGN_GT] / [SIGN_GTE] tags for < / <= / > / >= 
+[ADD] - Added NumberHelper class with pullUniqueFromRange to pull totally unique numbers from a range till the range ends  
+[ADD] - Added ability to upload more than one file per list for list queued import  
+[MSC] - Small fixes overall   
+
+--- -------------------------------------------
+--- Version 1.6.7 - 2018-11-28
+--- -------------------------------------------
+[BUG] - 2FA requires PHP >= 7.0 because of dependencies  
+[MSC] - Small fixes overall  
+
+--- -------------------------------------------
+--- Version 1.6.6 - 2018-11-21
+--- -------------------------------------------
+[ADD] - Added static testing ability for bounce handler  
+[UPD] - Updated ElFinder  
+[ADD] - Added 2FA for backend / customer area  
+[ENH] - Better sending of transactional emails with proper retry priority  
+[ADD] - Added ability to select which delivery stats to export  
+[ADD] - Added postal as smtp server type  
+[IMP] - Improved subscribers cache counting  
+[MSC] - Small fixes overall  
+
+--- -------------------------------------------
+--- Version 1.6.5 - 2018-10-30
+--- -------------------------------------------
+[MSC] - Small fixes overall   
+
+--- -------------------------------------------
+--- Version 1.6.4 - 2018-10-29
+--- -------------------------------------------
+[ADD] - Added phone number to customers  
+[BUG] - Fix page size in list page types  
+[ENH] - List export now produces one single file and no more zip archive needed  
+[ENH] - Segment export now produces one single file and no more zip archive needed   
+[ENH] - List forms: subscribe / unsubscribe will now have .3 opacity while submitted to give the user a better sense of the form being sent  
+[BUG] - Fix a bug where at upload certain files could be interpreted as images when they were not  
+[ENH] - Remove csv/txt files after list import from browser
+[ADD] - Added campaign_model_count_subscribers_criteria filter hook
+[ADD] - Added campaign_model_find_subscribers_criteria filter hook
+[ADD] - Added campaign opens info widget inside campaign overview, based on user agent info
+[ADD] - Added ability to search for delivery server in campaign delivery logs
+[ADD] - Added Sent / Delivered stats in the grid view for campaigns
+[ADD] - Added a new AR event, AFTER-CAMPAIGN-SENT which triggers after a certain campaign has been sent
+[ADD] - Added cache for Lists::getConfirmedSubscribersCount and Lists::getSubscribersCount with hourly adjustment from cron job
+[ADD] - Added ability to delete subscribers from the update subscriber screen
+[ADD] - Added grid filters in backend / customer in "Lists > All subscribers" area
+[ADD] - REMOTE_CONTENT url attribute now accepts tags by it's own too  
+[ADD] - Added ability to test the regexes from the Backend > Settings > Email Blacklist
+[IMP] - Improved campaigns loading time in grid view 
+
+--- -------------------------------------------
+--- Version 1.6.3 - 2018-09-07
+--- -------------------------------------------
+[ADD] - Added ability to set default template stub via the config param email.templates.stub  
+[ADD] - Now the default email template stub contains doctype definition and the charset is set to utf-8  
+[ADD] - Added ability to use regex patterns for not allowing certain email address in the FROM field of a campaign  
+[ADD] - Added API region for mailgun api
+
+--- -------------------------------------------
+--- Version 1.6.2 - 2018-08-21
+--- -------------------------------------------
+[IMP] - Max bounce and complaint rate now accepts floats too  
+[BUG] - Fix incorrect CUrlValidator call to validate() instead of validateValue()  
+[ADD] - Added ability to edit all common emails that go out, from Backend > Settings > Email Templates
+[BUG] - Tags inside "Custom campaign tags" were not parsed  
+[ADD] - Added ability to create price plans only for certain customer groups  
+[ADD] - Added user agent common tags available to replace in custom fields on campaign open/click/sent  
+
+--- -------------------------------------------
+--- Version 1.6.1 - 2018-08-07
+--- -------------------------------------------
+[ADD] - Added ability to set max complaints rate for campaigns  
+[IMP] - Improved the workflow for when having set max bounces rate for campaigns  
+[ADD] - Added sorting abilities for email lists page  
+[BUG] - Fixed a bug that allowed sending duplicates when campaign selected random subscribers from list
+
+--- -------------------------------------------
+--- Version 1.6.0 - 2018-08-06
+--- -------------------------------------------
+[BUG] - The 24 Hours perf graph would show bad data under certain circumstances  
+[BUG] - The soft bounces rate would show bad data under certain circumstances  
+[UPD] - Updated Yii Framework to 1.1.20  
+[UPD] - Updated CKEditor
+[CHG] - Removed the in-app store. We now use https://store.onetwist.com/  
+[CHG] - Campaign name can now be edited when paused.  
+[ADD] - Added bulk action for sending test emails for campaigns  
+[ADD] - Added bulk delete for customer login logs  
+[ADD] - Added the template name in campaign grid for searching  
+[BUG] - Date/Datetime custom fields didn't show the picker in customer area  
+[ADD] - The dkim key size is now configurable via app param: email.custom.dkim.key.size  
+
+--- -------------------------------------------
+--- Version 1.5.9 - 2018-06-28
+--- -------------------------------------------
+[MSC] - Small fixes overall 
+
+--- -------------------------------------------
+--- Version 1.5.8 - 2018-06-19
+--- -------------------------------------------
+[ADD] - Added ability to select scheme for tracking domains: http or https
+[BUG] - Fixed a bug where under certain circumstances, the delivery would be slowed down considerably
+[IMP] - Improved compatibility with PHP 7.2 
+[MSC] - Small fixes overall 
+
+--- -------------------------------------------
+--- Version 1.5.7 - 2018-05-14
+--- -------------------------------------------
+[MSC] - Small fixes overall 
+
+--- -------------------------------------------
+--- Version 1.5.6 - 2018-05-11
+--- -------------------------------------------
+[MSC] - Small fixes overall 
+
+--- -------------------------------------------
+--- Version 1.5.5 - 2018-05-11
+--- -------------------------------------------
+[ADD] - The "Use for" from delivery servers has been added in customer area too
+[ADD] - Added separate views for Regular and Autoresponders
+[ADD] - Added ability to sort Regular and Autoresponder campaigns 
+[ADD] - Added checkbox fields for forms
+[ADD] - Added description textarea for all list custom fields
+[ADD] - Added consent checkbox fields for forms
+[ADD] - Added ability to create simple pages such as: terms & conditions / privacy policy / etc.
+[ADD] - Plain text only campaigns will render in html mode for the web version 
+[ADD] - Added a default landing page for frontend. It can be disabled from backend if needed.
+[ADD] - Added Social Links area in settings to add social links for facebook/twitter/linkedin/instagram/youtube
+[ADD] - Registration can now show a newsletter subscribe checkbox with right consent text
+[BUG] - Fix a bug where campaign queue tables wouldn't be populated for autoresponders
+[CHG] - "Email blacklist suggestions" have now become "Block email requests"
+[CHG] - When submitting data at "Block address" page, subscriber will get a confirmation email and the email will be blacklisted automatically upon confirmation
+[CHG] - Customer delivery servers will be merged with grouo delivery servers in campaign setup step to allow customer to select from them
+[ENH] - The translate command will now preserve the translated strings existing in the translated files 
+
+--- -------------------------------------------
+--- Version 1.5.4 - 2018-04-12
+--- -------------------------------------------
+[IMP] - Make the date picker show plenty years for birth date 
+
+--- -------------------------------------------
+--- Version 1.5.3 - 2018-04-10
+--- -------------------------------------------
+[ADD] - Added PHP info from CLI to backend > misc > php info
+[ADD] - Added ability to add extra tags per campaign basis
+[ADD] - Protected with mutexes the ListSubscriber::copyToList and ListSubscriber::moveToList methods to avoid duplicates
+[ADD] - Added ability to force opt in/out for customers and customer groups
+[ADD] - Added ability to enable/disable the API for customers and customer groups
+[ADD] - Added customer export ability for account, api keys, bounce/fbl/delivery servers, email box monitors, campaigns, campaign tags
+[ADD] - Added customer export ability for lists, messages, sending domains, tracking domains, suppression lists, templates, template categories  
+[ADD] - Added Email Lists export ability
+[ADD] - Added ability to export subscriber profile per list
+[ADD] - Added ability to export campaigns sent to a particular subscriber
+[ADD] - Added a new delivery server type, postmastery (https://www.postmastery.com/)
+[ADD] - Added the "name" attribute for campaign templates
+[ADD] - Added "{customer,backend}_layout_main_sidebar_user_panel" action hook
+[ADD] - Added the ability to let the system automatically adjust the number of campaigns at once
+[ADD] - Added [REMOTE_CONTENT url='https://www.domain.com/'] to fetch remote content directly in the email content and subject
+[ADD] - Added birth date field for customers
+[CHG] - Changed the PCNTL logic in conjunction with mutexes for more fluid inner workings
+[CHG] - Make sure we replace the exit calls with Yii::app()->end() for a clean shutdown of the framework
+[IMP] - Improved delivery servers quota checks, now they are very strict with a very very small leeway
+
+--- -------------------------------------------
+--- Version 1.5.2 - 2018-02-28
+--- -------------------------------------------
+[ADD] - Added a new console command, "update-ip-location-timezone" to update the timezone info for all stored ips.
+[ADD] - Added "Timewarp" for campaigns. See https://kb.mailwizz.com/articles/timewarp/ 
+[ADD] - Added "Last 7 days subscribers activity" graph for each list
+[ADD] - Added ability to create a campaign only for a single subscriber
+[ADD] - Added notifications via message and transactional emails for customers when an abuse report is filled in
+[ADD] - Added PostMark delivery server type
+[ADD] - Added ability to CLI import email blacklist
+[ADD] - Added ability to take List Subscriber Actions into consideration in import too
+[ADD] - Added ability to email account details to customers when the account is edited from backend area
+[ADD] - Added ability to select the subscriber status when copy emails into a list from another list
+[ADD] - Added new command: delete-email-blacklist to delete the whole email blacklist
+[ADD] - Added version number for app-custom.js and app-custom.css files using filemtime()
+[ADD] - Added ability to resend campaign stats after 24 hours too
+[CHG] - Alter all the ip_address columns to 45 characters in length to accomodate ipv6.
+[CHG] - XML/JSON feeds will cache the information only for an hour for autoresponders in order to provide more up-to-date content
+[CHG] - Changed the cache/mutex keys so that multi-server mutex and cache handling is possible now.
+[CHG] - To improve performance, we removed the counters for when you'd select a list and/or segment
+[RMV] - Removed all ip location extensions except maxmind.
+[IMP] - "Customer > Campaigns > Custom Tags" now accept HTML too.
+
+--- -------------------------------------------
+--- Version 1.5.1 - 2018-01-02
+--- -------------------------------------------
+[ADD] - Added following tags: SUBSCRIBER_EMAIL_NAME, SUBSCRIBER_EMAIL_DOMAIN, EMAIL_NAME, EMAIL_DOMAIN
+[ADD] - Added email headers ability, like email footers.
+[ADD] - Added new server type: PepiPost Web Api
+[ADD] - Added following filter hook: common_settings_auto_update_warning_message
+[ADD] - Added the ability to enable the application to auto-update itself
+[ADD] - XML feeds now can use indexed items, see https://kb.mailwizz.com/articles/embed-xml-rss-feeds-into-your-campaign/
+[ADD] - JSON feeds now can use indexed items, see https://kb.mailwizz.com/articles/embed-json-feeds-into-your-campaign/ 
+[ADD] - Added ability to add the offset=x attribute for xml/json feeds
+[ADD] - Added ability to set how many days to look back when loading feed items
+[ADD] - Added ability to take action when a feed has no items
+[ADD] - Added recaptcha for backend area too
+[BUG] - Delivery servers could not do plain text only in some cases
+[CHG] - Unsubscribes will be kept forever in the system by default. You can control it from Backend > Settings > Cron > "Unsubscribe days"
+[CHG] - Small UI changes/improvements
+[CHG] - Login pages now have a background image and ability to change it from Backend > Settings > Customization
+[RMV] - Removed the "customer_controller_guest_form_submit_start" action hook. Use "controller_action_save_data" action hook instead
+
+--- -------------------------------------------
+--- Version 1.5.0 - 2017-12-03
+--- -------------------------------------------
+[ADD] - Added following filter hooks: campaign_model_get_{lists,segments,groups}_dropdown_array_criteria
+[ADD] - Added following filter hooks: price_plan_order_payment_{from,to}_text
+[ADD] - Added following filter hooks: price_plan_order_get_html_payment_{from,to} 
+[ADD] - Added following action hooks: list_subscriber_actions_{subscribe,unsubscribe}_action_{before,after}_html_display
+[ADD] - Added ability to enable/disable and set the number of parallel processes for bounce processing
+[ADD] - Added ability to enable/disable and set the number of parallel processes for fbl processing
+[ADD] - Added ability to enable/disable and set the number of parallel processes for email box processing
+[ADD] - Added the price_plan_order_payment_from_to_layout filter hook defaulting to "from-to"
+[ADD] - Added ability to use redis for cache and mutex
+[ADD] - Added following filter hook: get_upload_allowed_max_file_size_options and get_allowed_max_memory_limit_options
+[ADD] - Added ArrayHelper helper class
+[CHG] - Changed the way suppression lists work. Best is to delete all your suppression lists records before the upgrade.
+[CHG] - Mailgun makes use of it's new sending method via the api now
+[BUG] - Fixed sendgrid missing custom arguments throwing error and status code wrongly matching >= 200 as success code
+[BUG] - Fixed elasticemail delivery server  
+[CHG] - Disabled allowing md5 in blacklists by default. Enable it from Backend > Settings > Email Blacklist
+[CHG] - Modified the list-unsubscribe header.
+[ENH] - Increased the campaign/list from name to 255 chars length  
+[ENH] - Improve performance for checking against blacklists 
+[UPD] - Updated ckeditor extension 
+
+--- -------------------------------------------
+--- Version 1.4.9 - 2017-11-06
+--- -------------------------------------------
+[ADD] - Added "delete-transactional-emails" command
+[ADD] - Added ability to set the amount of time for how long to keep the transactional emails in the system. Backend > Settings > Cron
+[ADD] - Added twig_create_instance filter hook
+[ADD] - Added TwigHelper class
+[BUG] - Fixed an issue where when copy campaign, you'd copy processing stats too which should been reset upon copy
+[CHG] - GEO Opens is now part of customer/customer group settings
+[CHG] - Top domains opens and clicks graph is now part of customer/customer group settings
+[CHG] - 24 hours performance graph is now part of customer/customer group settings 
+[CHG] - Backend > Settings > SFP/DKIM will not reset the domains automatically anymore.
+[CHG] - Amazon ses will now create separate SNS Topics for each delivery server
+[MSC] - Misc Fixes
+
+--- -------------------------------------------
+--- Version 1.4.6 | 1.4.7 | 1.4.8 - 2017-10-20
+--- -------------------------------------------
+[MSC] - Misc Fixes
+
+--- -------------------------------------------
+--- Version 1.4.5 - 2017-10-20
+--- -------------------------------------------
+[ADD] - Added {backend,customer}_dashboard_glance_stats_list filter hook
+[ADD] - Added GeoCountry / GeoState and GeoCity custom field types which will always be populated 
+        with the subscriber country / state / city based on the ip address.
+        You need MaxMind's database in order for this to work.
+[ADD] - Added [SUBSCRIBER_GEO_COUNTRY] and [SUBSCRIBER_GEO_STATE] and [SUBSCRIBER_GEO_CITY] tags 
+        that can be used as defaults for custom fields to add as defaults the country / state / city 
+        of the subscriber based on the IP address.
+[ADD] - Added the [CAMPAIGN_SEGMENT_NAME] tag
+[ADD] - Added option to require campaign approval before sending
+[ADD] - Added ability to keep list selections in sync when using Subscriber Actions in lists
+[ADD] - Added ability to add the IP Pool for SparkPost web api
+[ADD] - Added "update-ip-location-for-campaign-opens" console command to update locations for opens
+[ADD] - Added "update-ip-location-for-campaign-clicks" console command to update locations for clicks
+[ADD] - Added "frontend_campaigns_controller_web_version_action_email_content" filter hook
+[ADD] - Added "console_send_campaigns_command_process_subscribers_loop_in_loop_start" action hook
+[ADD] - Added Email Box Monitors which will allow you to monitor email boxes and take actions against 
+        subscribers based on the email content. This can be useful to automate unsubscribes from replies and so on.
+[CHG] - Change subscriber status to blacklisted only if the subscriber is confirmed
+[CHG] - Because of it's size, we don't include MaxMind's database in the app by default. 
+        See Backend > Locations > MaxMind Database for how to add it into the app.
+[IMP] - Improved the campaigns pausing ability. Now pausing is instant!
+
+--- -------------------------------------------
+--- Version 1.4.4 - 2017-10-04
+--- -------------------------------------------
+[ADD] - Added new command to delete mutex files: "delete-mutexes" which will also run daily to cleanup the mutexes folder
+[ADD] - Added new command to unsubscribe inactive subscribers from lists, run "php /path/to/apps/console/console.php help unsubscribe-inactive-subscribers" for info
+[ADD] - Added ability to count giveup emails against customer sending quota
+[ADD] - Added back the ability to resend failed emails in campaigns
+[ADD] - Added ability to send the campaign share reports details(url and password) via email
+[ADD] - Added notification email for when the list import finishes via command line/cron job
+[ADD] - Added bulk action to unconfirm subscribers in a list
+[ADD] - Added bulk action to resend confirmation emails for subscribers in a list via transactional emails
+[ADD] - Added "delete-campaign-delivery-logs" command 
+[ADD] - Added ability to delete the campaign delivery logs and replace them with a static counter to improve performance
+[ADD] - Added search ability for Backend > Misc > Campaign Delivery logs
+[ADD] - Added search ability for Backend > Misc > Campaign Bounce logs
+[ADD] - Added Abuse Complaints stats area in campaign overview
+[ADD] - Added webhook endpoint for Postal, available at http://domain.com/index.php/dswh/postal
+[ADD] - Added lists/subscribers/unsubscribe-by-email-from-all-lists for API
+[ADD] - Added ability to use md5s in the email blacklists
+[ADD] - Added ability to parse RANDOM_CONTENT in the campaign from name tag
+[ADD] - Added a new delivery server type: NewsMan Web API for newsmansmtp.ro
+[ADD] - Added a new API Endpoint to list and add campaign bounces
+[ADD] - Added daily quota for delivery servers
+[ADD] - Added ip location extension based on MaxMind's (maxmind.com) GeoLite2 City database.
+[ADD] - Added the ability for the customers to have multiple suppression lists
+[ADD] - Added "suppression-list-import" command
+[ADD] - Added ability to select suppression lists per campaign basis
+[ADD] - Added a new extension, drag and drop email template builder 
+[ADD] - Added new custom field type, checkbox list
+[ADD] - Added new custom field type, radio list
+[ADD] - Added ability to override the app language by passing a query var like: ?lang=en in the url
+[ADD] - Added sticky filters for campaigns area
+[CHG] - XML/JSON feeds will be auto-detected in campaigns
+[CHG] - Emails that start with _ or end with _ are now accepted in the system
+[CHG] - URL Tracking is now enabled by default
+[IMP] - Improved DSWH handler
+[IMP] - CCT_* tags are now parsed in the campaign subject too
+[IMP] - Test emails from campaigns will now try to use a real subscriber based on the email
+[UPD] - Upgraded Yii framework to latest version
+[UPD] - Upgraded amazon sdk to latest version. You need PHP >= 5.5 to use it from now on 
+[UPD] - Upgraded mailgun sdk to latest version. You need PHP >= 5.5 to use it from now on 
+[UPD] - Upgraded sendgrid sdk to latest version. You need PHP >= 5.6 to use it from now on 
+[UPD] - Upgraded elasticemail to use version 2 of their api
+[UPD] - Upgraded twitter library. You need PHP >= 5.6 to use it from now on
+
+--- -------------------------------------------
+--- Version 1.4.3 - 2017-05-26
+--- -------------------------------------------
+[ADD] - Added ability for AR's to only send after certain hour in the day
+[BUG] - Fixed not properly adding the {unsubscribe} tag for ElasticEmail
+[CHG] - Allowed new chars in the tracking urls to avoid broken links when links are scanned by various clients
+[UPD] - Upgraded elFinder to latest version
+[ENH] - Preprocess the files uploaded through elFinder to not allow white spaces into their name  
+
+--- -------------------------------------------
+--- Version 1.4.2 - 2017-05-22
+--- -------------------------------------------
+[ADD] - Added ability to include current subscribers into Autoresponders as opposed to send AR's to only new subscribers
+[ADD] - Added ability to take action against subscriber(move/copy to list) after the campaign has been sent to the given subscriber  
+[ADD] - Added back the delivery server domain policies 
+[IMP] - Improved delivery servers rotation algorithm  
+
+--- -------------------------------------------
+--- Version 1.4.1 - 2017-05-10
+--- -------------------------------------------
+[BUG] - Bug fixes for the campaign tracking urls
+[UPD] - Lowered down the timings for cache for a faster update of data 
+
+--- -------------------------------------------
+--- Version 1.4.0 - 2017-05-07
+--- -------------------------------------------
+[BUG] - Fixed undefined variable in campaign template step when uploading new template
+[BUG] - Fixed an issue where the "started at" info will not be set for newly created campaigns
+[ENH] - Input filtering now tries to preserve the filtered variable type, useful for strict type comparison
+[ENH] - API calls to the update subscriber endpoint don't need to include the email address anymore
+[MSC] - Misc small fixes
+
+--- -------------------------------------------
+--- Version 1.3.9.9 - 2017-04-23
+--- -------------------------------------------
+[BUG] - Fixes for the last_login column for when upgrading
+
+--- -------------------------------------------
+--- Version 1.3.9.8 - 2017-04-21
+--- -------------------------------------------
+[ADD] - Added name/description fields for API keys
+[ADD] - Added subscribers opt-out history to complement the opt-in history
+[ADD] - Added subscriber profile info modal
+[ADD] - Added ability to create and populate email lists from the filtered results from the All Subscribers area
+[ADD] - Added new widget to show top domains for campaign opens and clicks
+[ADD] - Include the reason column for unsubscribes at export
+[CHG] - List export will now contain all subscribers, regardless of their status 
+[CHG] - Renamed the Campaigns MIS Reports to simply Campaigns Stats
+[ENH] - Parse all the tags in the custom headers for delivery servers
+[ENH] - Improved bounce handling
+[UPG] - Upgraded YII Framework from 1.1.17 to 1.1.18
+
+--- -------------------------------------------
+--- Version 1.3.9.7 - 2017-04-12
+--- -------------------------------------------
+[ADD] - Added BounceHandlerHelper class
+[ADD] - Bounce handler rules will now use a remote repository for getting updates once at 24 hours with fallback to local rules
+[ADD] - Added hourly quota for customers and customer groups so that one can set the max. number of emails they can send in one hour
+[ADD] - Finally urls in plain text are tracking transformed
+
+--- -------------------------------------------
+--- Version 1.3.9.6 - 2017-04-07
+--- -------------------------------------------
+[ADD] - Added start page for MIS Reports
+[MSC] - Misc fixes
+
+--- -------------------------------------------
+--- Version 1.3.9.5 - 2017-04-07
+--- -------------------------------------------
+[ADD] - Added ability to add random content blocks with full html and trackable links for each campaign
+[ADD] - Added ability to do recurring import from urls
+[ADD] - Added ability to update missing optin history when subscriber updates his profile. Can be turned on/off globally or per customer group
+[ADD] - Added ability to store the last login of users and customers. Beware, customers last login is updated when customer is impersonated
+[ADD] - Added ability for customers to disable their accounts
+[ADD] - Added STATUS_PENDING_DISABLE for customers which will be set when a customer disables his account
+[ADD] - Added STATUS_DISABLED for customers which will be set by the daily cron job when the account data will be removed
+[ADD] - Added ability to categorize email templates
+[ADD] - Added the customer_login_with_disabled_account action hook which is triggered when a disabled customer logs in and the account is enabled again
+[ADD] - Added ability to load a init-custom.php file placed in apps/ folder. You can place here custom init directives, but also hook into available application 
+[ADD] - Added MIS reports area for customer campaigns
+[ADD] - Added ability to give a strict number of times a recurring campaign is allowed to run
+[ADD] - Added ability to parse dynamic tags for when taking actions agaisnt subscribers on campaign open or link click
+[ADD] - Added 'delivery_servers_form_view_file' filter hook to overwrite the form view file for servers
+[CHG] - Deleting customers will mark them as deleted and will be removed for good when the daily cron job runs
+[CHG] - On Start Pages, the heading, content and icon are now all optional
+[CHG] - Email templates area layout is now grid based
+[MSC] - Misc fixes
+
+--- -------------------------------------------
+--- Version 1.3.9.4 - 2017-03-22
+--- -------------------------------------------
+[BUG] - Upgrade SQL fix for `start_page` table
+
+--- -------------------------------------------
+--- Version 1.3.9.3 - 2017-03-22
+--- -------------------------------------------
+[ADD] - Added ability to parse tags for all List Pages subjects not just content
+[ADD] - Added custom FileLogRoute class to record the ip address of http errors
+[ADD] - Added Start Pages for customer and backend dashboards
+[ADD] - Added color picker for Start Pages so you can set the icon color
+[ADD] - Added emoji support for campaign subject
+[ADD] - Added console_command_send_campaigns_before_prepare_email filter hook
+[ADD] - Added console_command_send_campaigns_after_prepare_email filter hook
+[ADD] - Added back the Embed Images feature, this time as a feature for customers/customer groups so it can be easily disabled
+[ADD] - Added {backend,customer}_controller_guest_reset_password action hooks
+[ADD] - Added delivery server type for postmastery integration, including bounce and complaints webhook
+[ADD] - Added support for twig for all of list pages and email templates
+[ADD] - Aded password hashing for bounce / fbl and email box monitors
+[CHG] - Changed the logic for loading and parsing template tags, should be faster now
+[CHG] - We're now using cache to count delivery servers quota so that sending limits work when PCNTL enabled
+[RMV] - Disabled Delivery Servers Domain Policy feature as it caused more issues than actually solved. Will be removed for good in near future
+
+--- -------------------------------------------
+--- Version 1.3.9.2 - 2017-03-14
+--- -------------------------------------------
+[ADD] - Added ability to turn on/off the 24 hours performace graph for campaigns (Backend > Settings > Campaigns > Misc)
+[ADD] - Added ability to mask emails that are part of shared campaigns
+[ADD] - Added the campaign ID in the grid view of campaigns
+[ADD] - Added ability to filter campaigns by multiple lists and by "send at" date range
+[ADD] - Added "Start pages" for all major sections of the app so they are displayed when no content exists for those sections
+[ADD] - Added base64_encode to the list of filters that can be applied to tags
+[CHG] - Mask email function will mask the domain name as well, leaving the tld visible though
+
+--- -------------------------------------------
+--- Version 1.3.9.1 - 2017-03-06
+--- -------------------------------------------
+[ADD] - Added cron jobs history area in the MISC menu so we can track running cron jobs
+[ADD] - Added caching for when campaign template is parsed to generate tracking urls
+[FIX] - Fixed wrong table reference to `campaign_url` table
+[MSC] - various misc fixes
+
+--- -------------------------------------------
+--- Version 1.3.9.0 - 2017-03-02
+--- -------------------------------------------
+[ADD] - Added Opens/Clicks stats to campaigns listing page
+[ADD] - Added 24 hours performance graphs for campaigns
+[ADD] - Added campaign_form_setup_step_{before,after}_campaign_options action hooks
+[ADD] - Added campaign_form_template_step_{before,after}_top_options action hooks
+[CHG] - Changed the number of recent campaigns dropdown from 10 to 30
+[CHG] - Removed all `ActiveRecord::getPendingDelete()` methods and added `ActiveRecord::getIsPendingDelete()` instead
+
+[NOTES for developers] 
+1. Make sure you replace any calls to `$model->pendingDelete` with `$model->isPendingDelete` and 
+and calls to `$model->getPendingDelete()` with `$model->getIsPendingDelete()`
+
+--- -------------------------------------------
+--- Version 1.3.8.9 - 2017-03-01
+--- -------------------------------------------
+[BUG] - Fix serialize in "CustomerGroupOption::beforeSave" model
+[BUG] - Fix "CommonHelper::getQueriesFromSqlFile"
+
+--- -------------------------------------------
+--- Version 1.3.8.8 - 2017-03-01
+--- -------------------------------------------
+[ADD] - Added ability to disable API signature checking from backend area
+[ADD] - Added layout_top_navbar_menu_items_start and layout_top_navbar_menu_items_end action hooks in backend/customer layouts
+[ADD] - Added the ability to pause the sending for delivery server after each email it sends
+[ADD] - Added [DS_TYPE] and [DS_ID] tags
+[ADD] - Added subject lines in list page types and list pages
+[ADD] - Added sync-lists-custom-fields command
+[ADD] - Added ability to mask emails client side, that is: abcd@gmail.com becomes a**d@gmail.com
+[ADD] - Added ability to disable customers to edit their own subscribers
+[ADD] - Added optin history for subscribers to comply with CASL and CASL like laws
+[ADD] - Added [SUBSCRIBER_OPTIN_IP], [SUBSCRIBER_OPTIN_DATE], [SUBSCRIBER_CONFIRM_IP], [SUBSCRIBER_CONFIRM_DATE] custom template tags
+[ADD] - Added ability to decide if customers/customer groups can use autoresponders
+[ADD] - Added ability to select what columns to be shown in the grid views in backend area
+[ADD] - Added ability to select what columns to be shown in the grid views in customer area
+[ADD] - Added ability to set "Delivery servers logs removal days" from backend area
+[ADD] - Added caching for campaigns stats
+[ADD] - Implemented queue tables for AR's too, previously only regular campaigns supported
+[ADD] - Added ability to select multiple campaigns for sending to subscribers who have opened/unopened previous campaigns
+[BUG] - FBL handler used the hardcoded X-MW- prefix
+[CHG] - Campaign started at will only change when the campaign enters processing for the first time
+[CHG] - Moved subscribers can now be confirmed via bulk actions
+[CHG] - Excluded IPS from tracking will now redirect to final destination, the click will not be tracked though
+[CHG] - Changed default campaigns open page to unique opens instead of all opens
+[CHG] - Database import now takes into consideration only email columns with length greater than 0
+[CHG] - The internal bounce will have the message set to "Internal Bounce" if no message can be extracted from the bounced email
+[IMP] - Bounce handler and FBL handler now try to use pcntl for faster processing
+[MSC] - Various misc fixes
+[MSC] - Overall cleanup of unused classes/features
+[RMV] - Removed the old, unused redis queue sending mechanism
+[RMV] - Removed redis queue entirely from the system
+[RMV] - Removed the send-parallel-campaigns command since it is not needed anymore
+[RMV] - Removed the Minify package
+[RMV] - Removed the old Facebook package
+[UPD] - CKEditor update
+[UPD] - ElFinder update
+[UPD] - Updated internal mailwizz api client
+
+[NOTES for customers] 
+1. Because we added the ability to select multiple campaigns for opens/unopens, the old way of selecting a single 
+campaign is not going to work anymore, so please make sure you don't have sending campaigns that use this feature.
+
+
+--- -------------------------------------------
+--- Version 1.3.8.7 - 2017-01-24
+--- -------------------------------------------
+[ADD] - Added campaigns stats area in backend
+[ADD] - Added email lists in backend
+[BUG] - Fixed frontend language was not set under certain cases
+[CHG] - Changed the delete-inactive-subscribers and move-inactive-subscribers commands
+[ENH] - Better bounce handling for SendGrid/Sparkpost web api
+[ENH] - Added custom page to warn when deleting segments
+
+--- -------------------------------------------
+--- Version 1.3.8.6 - 2017-01-17
+--- -------------------------------------------
+[ADD] - Automatically reset PROCESSING campaigns if they are stuck in processing for more that 7 hours
+[ADD] - Automatically reset cron-running bounce servers if they are stuck in processing for more that 7 hours
+[BUG] - Fix uppercased links in plain text emails
+[BUG] - Fix import from url not redirecting
+[CHG] - SparkPost API will now accept subaccounts too, but make sure the webhook url for the server is added in SparkPost
+[CHG] - Changed the regex for xml/json campaign feed parsers. This can cause problems, test your campaigns if you use the feature
+
+--- -------------------------------------------
+--- Version 1.3.8.5 - 2017-01-09
+--- -------------------------------------------
+[ADD] - Ability to bulk export basic stats for campaigns
+
+--- -------------------------------------------
+--- Version 1.3.8.4 - 2017-01-05
+--- -------------------------------------------
+[BUG] - Make sure the user group reflection feature only loads php files
+[BUG] - Make sure we copy the customer group servers too when we copy a group
+[SEC] - Updated SwiftMailer and PHPMailer in response to CVE-2016-10033
+[UPD] - Updated CKeditor
+[UPD] - Updated ElFinder
+
+--- -------------------------------------------
+--- Version 1.3.8.3 - 2016-12-12
+--- -------------------------------------------
+[ADD] - Added ability to import/export/delete all for blacklist monitors
+[ADD] - Added the [CAMPAIGN_DATETIME_ADDED] tag to output Y-m-d H:i:s
+[ADD] - Added CPU load average info in campaign command in verbose mode
+[CHG] - [CAMPAIGN_DATE_ADDED] will output Y-m-d instead of Y-m-d H:i:s
+[MSC] - Various small fixes
+
+--- -------------------------------------------
+--- Version 1.3.8.2 - 2016-12-07
+--- -------------------------------------------
+[ADD] - Ability to use [EMPTY] to search Email Blacklist reason column (for empty columns)
+[BUG] - Fix all lists subscribers counters
+
+--- -------------------------------------------
+--- Version 1.3.8.1 - 2016-12-05
+--- -------------------------------------------
+[ADD] - FilterVarHelper::ip now accepts CIDR format
+[ADD] - Exclude ips from opens/clicks now are CIDR aware
+[BUG] - Fixed encoding of strings in various cases, such as import or POST/API data
+[ENH] - Improved segments speed
+[ENH] - Transforming tracking urls will be aware of changes done in the email template
+
+--- -------------------------------------------
+--- Version 1.3.8.0 - 2016-11-27
+--- -------------------------------------------
+[ADD] - Added ability to filter by date added in all subscribers area for customers
+[ADD] - Inject elasticemail unsubscribe tag automatically
+[BUG] - Fixed multibyte url validation
+[BUG] - Fixed facebook login. You need php >= 5.4 to use it
+[BUG] - Fixed shared campaign stats export issue
+[UPD] - Updated CI's Security class
+
+--- -------------------------------------------
+--- Version 1.3.7.9 - 2016-11-17
+--- -------------------------------------------
+[ADD] - Added ability to create queue tables when sending campaigns. It is disabled by default. 
+[BUG] - Fixed Lists::getSubscriberExistsRedirect() that would return wrong info
+
+--- -------------------------------------------
+--- Version 1.3.7.8 - 2016-11-09
+--- -------------------------------------------
+[MSC] - Various small fixes
+
+--- -------------------------------------------
+--- Version 1.3.7.7 - 2016-11-08
+--- -------------------------------------------
+[MSC] - Various small fixes
+
+--- -------------------------------------------
+--- Version 1.3.7.6 - 2016-11-06
+--- -------------------------------------------
+[ADD] - Added country and state custom fields
+[ADD] - Added hourly cron job
+[MSC] - Various small fixes
+
+--- -------------------------------------------
+--- Version 1.3.7.5 - 2016-11-02
+--- -------------------------------------------
+[MSC] - Various small fixes
+
+--- -------------------------------------------
+--- Version 1.3.7.4 - 2016-11-01
+--- -------------------------------------------
+[MSC] - Various small fixes
+
+--- -------------------------------------------
+--- Version 1.3.7.3 - 2016-11-01
+--- -------------------------------------------
+[ADD] - Added Available tags modal in customer area for email templates create/update
+[ADD] - Added delete-campaigns command
+[ADD] - Added campaigns tracking api endpoint
+[ADD] - Added ability to share campaign reports
+[ADD] - Added public area for a global blacklist where people can add their emails and if approved, they will never receive newsletters.
+[ADD] - Added ability to notify customers(via email and internal message) when their sending quota reach certain percent
+[ENH] - The email headers prefix is now generated automatically at install time
+[ENH] - Improved the design of the app
+[ENH] - The email template engine now accepts any html you throw at it
+[ENH] - Finally the customer quota is properly counted when using PCNTL
+[ENH] - Recreated all the delivery servers forms using a new form builder
+[ENH] - New, very simplified dashboards
+[RMV] - Removed embed images
+[RMV] - Removed CSS inline in templates
+[RMV] - Removed html minify
+[RMV] - Removed the spam score checker since it was broken
+[RMV] - Removed Telize ip service extension
+[RMV] - Removed TCP Stream server type since it was deprecated
+
+--- -------------------------------------------
+--- Version 1.3.7.2 - 2016-08-09
+--- -------------------------------------------
+[ADD] - Added the store area in backend
+
+--- -------------------------------------------
+--- Version 1.3.7.1 - 2016-08-08
+--- -------------------------------------------
+[ADD] - Added ability to force the email sender for delivery servers of type smtp, php-mail and sendmail
+[ADD] - Added ability to add email preheader
+[ADD] - Added reset-customers-quota command which ca programatically run each month to reset customer quotas
+[ADD] - Added Available tags modal in backend area for email templates gallery
+[ADD] - Added filters for email blacklist
+[ADD] - Added move-inactive-subscribers command: https://kb.mailwizz.com/articles/move-inactive-subscribers-command/
+[ADD] - Added delete-inactive-subscribers command: https://kb.mailwizz.com/articles/delete-inactive-subscribers-command/
+[ENH] - Sending domains must be unique across the app
+[ENH] - The shared private DKIM key is now hidden to customers
+
+--- -------------------------------------------
+--- Version 1.3.7 - 2016-07-28
+--- -------------------------------------------
+[ADD] - Attachments support for Sparkpost
+[ADD] - Added ability to send customers into subscribe lists at registration
+[ADD] - Added ability to set the API key for google maps for the campaign activity map extension
+[ADD] - Added ability for delivery servers to be used for (Use for setting) : email tests and reports
+[ADD] - Added ability to include --segment_uid param for command line export
+[BUG] - Multiple small fixes
+
+--- -------------------------------------------
+--- Version 1.3.6.9 - 2016-07-07
+--- -------------------------------------------
+[ADD] - Added email blacklist monitors feature
+[ENH] - Allow delivery server header values to contain the : sign
+
+--- -------------------------------------------
+--- Version 1.3.6.8 - 2016-07-05
+--- -------------------------------------------
+[ADD] - #42 - Customer area menu item for articles
+[CHG] - Email blacklist does not accept wildcard emails anymore, use the regex if you need to blacklist by wildcard
+[ENH] - Allow ability to add the scheme for cdn domains (http or https, default to http)
+[ENH] - Improved the email template parser.
+
+--- -------------------------------------------
+--- Version 1.3.6.7 - 2016-06-22
+--- -------------------------------------------
+[ADD] - Added ability to set the max. number of messages per smtp connection
+[ADD] - Added limited support for background images for table, td, div, p, span and body
+[BUG] - Delivery server campaign association would fail under certain circumstances
+
+--- -------------------------------------------
+--- Version 1.3.6.6 - 2016-06-20
+--- -------------------------------------------
+[ADD] - Added DS_NAME, DS_FROM_NAME, DS_FROM_EMAIL, DS_REPLYTO_EMAIL template tags
+[ADD] - Added ability to customize the Feedback-ID header
+[ADD] - Added ability to set DKIM/SPF to apply to all sending domains
+[ADD] - Added ability to select tracking domains in campaigns
+[ADD] - Added the clear-cache command
+[ADD] - Added the translate command to populate translation messages from command line
+[BUG] - DSWH controller call to ListSubscriber::setStatus
+[BUG] - Broken CampaignActivityMap cluser image path
+[BUG] - Wrong list selection for list actions
+[BUG] - Wrong model name for tour extension when deleting slides
+
+--- -------------------------------------------
+--- Version 1.3.6.5 - 2016-06-02
+--- -------------------------------------------
+[ADD] - Added [DIRECT_UNSUBSCRIBE_LINK] and [UNSUBSCRIBE_LINK] tags that produce a tags instead of urls
+[ADD] - Use Tidy if possible to cleanup and repair email templates before parsing
+[ADD] - Added ability for the tour plugin to use own images for slides
+[BUG] - Fix registration issue when customer not moved to predefined group
+[BUG] - Fix PHP < 5.4 error caused by twitter auth library
+[BUG] - Fix a bug in delivery servers that would ask for wrong db column
+
+--- -------------------------------------------
+--- Version 1.3.6.4 - 2016-05-30
+--- -------------------------------------------
+[ENH] - Improved ElasticEmail bounce processing rules.
+[ENH] - Allow aria-* attributes in htmlpurifier
+
+--- -------------------------------------------
+--- Version 1.3.6.3 - 2016-05-28
+--- -------------------------------------------
+[ADD] - #27 - Added filters for subscribers from all lists area (customer)
+[ADD] - Added CAMPAIGN_SEND_AT / CAMPAIGN_STARTED_AT / CAMPAIGN_DATE_ADDED / CURRENT_MONTH_FULL_NAME template tags
+[ADD] - Ability to send to only a number of the total subscribers in a campaign and to randomize the subscribers
+[ADD] - Added campaign_template_available_option_tags_list filter hook
+[ADD] - #34 - Added Mailjet delivery server web api, requires php >= 5.4
+[ADD] - #35 - Added Sendinblue delivery server web api, requires php >= 5.3
+[ADD] - #36 - Added Tipimail delivery server web api, requires php >= 5.3
+[ADD] - #33 - Additional global headers (customers wide and customers group) 
+[ADD] - #32 - Added CTOR stat
+[ADD] - Added ability to select default country and timezone for customer registration
+[ADD] - Added ability to skip email confirmation on customer registration
+[ADD] - Added ability to completely override the bounce handler rules by using a rules-custom-override.php file
+[ADD] - Added a new extension, the Welcome Tour Extension
+[BUG] - Fix calling namespace classes in php < 5.3 in DswhController
+[BUG] - Fix the way campaign activity map extension displays the pin cluseterer
+[ENH] - Better management for domain policies sending retries via other servers
+[ENH] - Better bounce management with separate internal bounces
+[ENH] - When copy subscribers, now it also updates the custom fields. In the past, if a subscriber existed, it was skipped entirely
+[ENH] - Admins can now see unpublished articles in frontend
+[UPD] - Updated CKeditor extension (ElFinder) 
+
+--- -------------------------------------------
+--- Version 1.3.6.2 - 2016-04-19
+--- -------------------------------------------
+[ADD] - More options for click stats exporting
+[ADD] - Email template links can start with a tag, i.e: http://[DOMAIN]/path-on-server
+[ADD] - List form custom redirect extension allows now links like http://[DOMAIN]/path-on-server
+[ADD] - Added ability to order price plans
+[ADD] - Added customer_controller_guest_form_submit_start action hook
+[ADD] - Added captcha for register / login / forgot password forms for customer area
+[ADD] - Added ability to set price plans visibility
+[ADD] - Added ability for customers to have their own blacklist
+[ADD] - Display and search in lists, campaigns and subscribers by their unique ID
+[ADD] - Implemented TWIG as the template engine for campaign templates, which means conditionals and much more can be used in the template.
+[ADD] - Added monthly quota for delivery servers
+[ADD] - #15 - Ability to add logo from customization area for backend / customer / frontend
+[ADD] - #14 - New command to delete old records from various tables
+[ADD] - #9  - Restrict users from creating accounts from free emails like Hotmail, Outlook, Yahoo, Gmail
+[ADD] - Added customer_account_edit_render_tabs filter hook
+[ADD] - #16 - Add IP filtering for API calls
+[ADD] - #13 - Allow to specify why a subscriber unsubscribed
+[ADD] - #3 - Manual subscription request approval
+[ADD] - #18 - Ability to filter subscribers that did(not) open/click one/all campaigns in given timespan and take an action against them, such as disable
+[ADD] - #24 - IP / UA of customers when they login, together with geo location if possible
+[ADD] - #25 - Campaign retry sending failures
+[BUG] - Tracking domain handling issue in delivery servers because of wrong header parsing
+[BUG] - Fixed twitter login issue
+[BUG] - filter_var($email, FILTER_VALIDATE_EMAIL) causes issues under certain circumstances
+[CHG] - Twitter login needs PHP >= 5.5 in order to work
+[CHG] - Improved the DeliveryServer::pickServer method for faster result generation
+[ENH] - Plan downgrade. #5
+[ENH] - #17 - Autodetect CSV delimiter
+[ENH] - #19 - Api endpoint to search subscribers by email in all lists 
+[ENH] - Cache for subscriber custom fields which can be enabled via perf flags
+[UPD] - Upgraded ElFinder to latest release
+[UPD] - Upgraded CKEditor to latest release
+
+--- -------------------------------------------
+--- Version 1.3.6.1 - 2016-02-18
+--- -------------------------------------------
+[BUG] - Fix SparkPost typo in bounce classification.
+[BUG] - SendGrid delivery not working because of endgrid api upgrades.
+[UPD] - Updated PHPMailer and SwiftMailer to their latest versions
+[MSC] - Multiple adjustments for PHP 7
+
+--- -------------------------------------------
+--- Version 1.3.6.0 - 2016-01-26
+--- -------------------------------------------
+[ADD] - Added wysiwyg_filemanager_available_themes filter hook
+[ADD] - Added ability for CKEditor extension to set the theme for file manager
+[BUG] - Fixed an issue where when no blacklist reason provided, email passed validation
+[BUG] - Fixed title encoding in email templates
+[CHG] - Changed the emails encoding to quoted-printable instead of 8bit
+[MSC] - Multiple small changes in response to 1.3.5.9 release
+[UPD] - Updated Yii to version 1.1.17
+[UPD] - PHP 7 compatibility
+
+--- -------------------------------------------
+--- Version 1.3.5.9 - 2015-12-23
+--- -------------------------------------------
+[ADD] - Added bounce reason/message in the campaign reports for bounces
+[ADD] - Added list_import_data_bulk_check_failures filter hook
+[ADD] - Added in memory cache for emails blacklist verification and addition
+[ADD] - Added update ability for extensions
+[ADD] - Added the blocked status for campaigns
+[ADD] - Added ability for admins to block campaigns
+[ADD] - Added ability to block campaigns if subject/content match various blacklisted words
+[ADD] - Added ability to add blacklisted words for campaign subject and content
+[ADD] - Added ability to not allow various domain names in the "From email" campaign field
+[ADD] - Added ability to whitelist/blacklist access to the API based on the requesting IP address
+[ADD] - Ability for customers to add their own custom campaign tags
+[ADD] - Added ability to use subscriber custom fields in the list pages
+[ADD] - Added ability to import lists from command line
+[ADD] - Added ability for command line importer to import the subscribers from any csv/txt file placed in a given folder. Condition is the file name has to be the list uid followed by the .csv or .txt extension
+[ADD] - Added ability to export lists from command line
+[ADD] - Added controller_action_delete_data action hook in all controllers
+[ADD] - Added option to make lists un-removable
+[ADD] - Added controller_action_bulk_action action hook
+[ADD] - Added ability to export all subscribers at once, from all lists
+[ADD] - Added models_lists_after_copy_list filter hook
+[ADD] - Added company website to list company fields
+[ADD] - Added ability to block a campaign if the bounce rate is over what the admin defines
+[ADD] - Added htmlpurifier_adjust_configuration action hook
+[ADD] - Added [SUBSCRIBER_IP] tag
+[ADD] - Ability to decide if customers can export campaigns stats or not
+[ADD] - Ability to view campaigns sent for certain subscriber
+[ADD] - Ability to skip tracking domain validation
+[ADD] - Ability to optionally track opens
+[ADD] - Messaging/Notifications system for customers
+[ADD] - Added sending_domain_get_dns_txt_spf_record and sending_domain_get_dns_txt_dkim_record filter hooks
+[CHG] - When tracking opens/clicks, the subscriber status is not taken into consideration anymore
+[CHG] - Deprecated SendingDomain::DKIM_SELECTOR and SendingDomain::DKIM_FULL_SELECTOR in favor of SendingDomain::getDkimSelector() and SendingDomain::getDkimFullSelector()
+[CHG] - Abuse complaints via web forms will automatically unsubscribe the subscriber from the list
+[CHG] - Rewrote the entire send-campaigns command for better sendings
+[CHG] - Altered the soft-bounce rules to avoid blacklisting for when messages are treated like spam
+[CHG] - Email headers are now always in this format: array('name' => 'X', 'value' => 'Y') so that we can allow same header multiple times with diff values.
+[CHG] - Deprecated the REDIS QUEUE mechanism. If you were sending via Redis Queue, please go back to regular sending
+[CHG] - Deprecated the send-parallel-campaigns command. If you were using it for sending, please go back to regular sending
+[CHG] - Removing from blacklist will mark subscribers matching the email addresses as confirmed again
+[UPD] - Updated jQcron
+
+--- -------------------------------------------
+--- Version 1.3.5.8 - 2015-09-06
+--- -------------------------------------------
+[ADD] - Added [TAG:filter:md5] and [TAG:filter:sha1]
+[ADD] - Added ability to exclude IP addresses from url and/or click tracking
+[ADD] - Added frontend_list_subscribe_at_transaction_{start|end} action hooks
+[ADD] - Added frontend_list_update_profile_{before|after}_transaction, frontend_list_update_profile_at_transaction_{start|end} action hooks
+[ADD] - Added frontend_list_update_profile_{before|after}_transform_list_fields filter hooks
+[ADD] - Added new core extension, recaptcha for public forms
+[ADD] - Added campaigns_get_common_tags_search_replace filter
+[ADD] - Subscribers API endpoint now returns status/source and ip address
+[BUG] - Blacklist fix for nested calls
+[BUG] - Fix for template parser where images with white spaces in names would fail embeding
+[BUG] - Importing templates from gallery would not import the image as well
+[BUG] - Customer quota count failure under certain cases
+[BUG] - Fixed CKEditor extension which would allow uploading PHP files when the file manager was enabled
+[CHG] - Campaign copy will now redirect to update campaign screen instead of campaigns index
+[CHG] - Lock name for FBL/Bounce commands has been changed to be simply the hash of the file path to avoid collisions
+[ENH] - Export include source / ip address and addition date in UTC format
+[ENH] - Bounce servers better connection handler
+
+--- -------------------------------------------
+--- Version 1.3.5.7 - 2015-06-16
+--- -------------------------------------------
+[ADD] - Added campaign_content_before_transform_links_for_tracking and campaign_content_after_transform_links_for_tracking filter hooks
+[ADD] - API endpoint to pause/unpause campaigns
+[ADD] - API endpoint to mark campaigns as sent
+[ADD] - Unique/All subscribners counters in dashboards
+
+--- -------------------------------------------
+--- Version 1.3.5.6 - 2015-06-01
+--- -------------------------------------------
+[ADD] - Added phone number to customers registration page
+[ADD] - Added [CURRENT_DOMAIN] and [CURRENT_DOMAIN_URL] tags
+[ADD] - Added after_opening_body_tag action hook
+[ADD] - Added support for GA tracking for website pages
+[ADD] - Added SparkPost WEB API integration for delivery servers
+[ADD] - Added frontend_campaigns_track_url_item_not_found action hook
+[ADD] - Added ability to copy lists via API
+[ADD] - Added ability to copy campaigns via API
+[ADD] - Added bulk actions for campaigns
+[ADD] - Added CTR stat for campaigns
+[ADD] - Added ability to redirect instead of showing a 404 if subscriber not found in frontend actions.
+[ADD] - Added frontend_list_subscribe_before_transaction and frontend_list_subscribe_after_transaction action hooks
+[ADD] - Added frontend_list_subscribe_before_transform_list_fields and frontend_list_subscribe_after_transform_list_fields filter hooks
+[ADD] - Added CommonHelper::getIpAddressInfoUrl() and CommonHelper::getUserAgentInfoUrl()
+[ADD] - Added get_ip_address_info_url and get_user_agent_info_url filter hooks
+[UPD] - Updated CKEditor
+
+--- -------------------------------------------
+--- Version 1.3.5.5 - 2015-05-24
+--- -------------------------------------------
+[ADD] - Added customer_get_gravatar_url and user_get_gravatar_url filter hooks
+[ADD] - New options for bounce and fbl servers
+[ADD] - Added campaigns area in backend
+[BUG] - Tracking domains wrong www prefix in some cases
+[BUG] - Theme failure under some cases
+[BUG] - List import allowed empty emails under certain cases
+[BUG] - Amazon SES encoding FROM/TO issue with foreign chars
+[CHG] - Changed campaign default sending settings
+[IMP] - Improved some queries for counting list subscribers and customer subscribers.
+
+--- -------------------------------------------
+--- Version 1.3.5.4 - 2015-05-05
+--- -------------------------------------------
+[ADD] - Added AES encryption for delivery servers passwords
+[ADD] - Ability to directly send transactional emails for backend guest area
+[ADD] - New bounce rules
+[ADD] - Added CDN support for entire app but also for email assets
+[ADD] - Added VAT Number column for customer company info
+[ADD] - Added ability to add patterns to match emails when blacklist checks are running
+[ADD] - Added customization options for backend|frontend|customer logo text and skins overloading
+[ADD] - Added ability to force Reply-To email address for delivery servers
+[ADD] - Added ability to run bulk actions for deliver, fbl and bounce servers but also for email blacklist.
+[ADD] - Added ability to resend transactional emails
+[ENH] - Better bounced management
+[BUG] - List subscriber actions were not properly saved
+[BUG] - ElasticEmail web api failed processing bounces/complaints
+[BUG] - Tracking domain issue, filters would bubble up resulting in wrong tracking domains
+
+--- -------------------------------------------
+--- Version 1.3.5.3 - 2015-03-20
+--- -------------------------------------------
+[ADD] - Added following hooks: mailer_get_mailers_list, mailer_before_send_email, mailer_after_send_email, mailer_after_create_transport_instance, mailer_after_create_mailer_instance, mailer_after_create_message_instance
+[ADD] - Added web hook processor for DRH's Green Arrow Engine, available at the "/index.php/dswh/drh" url
+[ADD] - Added support for Dyn.com email service as a new delivery server type
+[ADD] - Added support for unlimited xml/json feeds in campaign templates
+[ADD] - Added support to use xml/json feeds in the campaign subject, i.e: News: [XML_FEED_BEGIN url='http://feed.com' count='1'][XML_FEED_ITEM_TITLE][XML_FEED_END]
+[ADD] - Added ability to create recurring campaigns
+[ADD] - Added ability to send welcome email when new subscriber is added into the list
+[BUG] - Campaign::getGroupsDropDownArray() wrong param for CDbCriteria::addNotInCondition()
+[BUG] - RedisQueue error when php < 5.3
+[BUG] - List database import failed to find right column name for email address
+[BUG] - Fixed percentage sign transformed into entity in the campaign subject line
+[CHG] - Tracking domains are loaded regardless if url tracking is enabled in campaign.
+
+--- -------------------------------------------
+--- Version 1.3.5.2 - 2015-02-23
+--- -------------------------------------------
+[ADD] - Ability to sort merged lists
+[ADD] - Ability for customers to search subscribers in all lists
+[BUG] - Invoices wrong path for logo when app installed in subfolder
+[MSC] - More fixes from v1.3.5.1
+
+--- -------------------------------------------
+--- Version 1.3.5.1 - 2015-02-18
+--- -------------------------------------------
+[BUG] - Fixed upload failure on list upload
+[BUG] - Error after update files uploaded and admin tried to login
+[MSC] - Multiple other small fixes after 1.3.5
+
+--- -------------------------------------------
+--- Version 1.3.5 - 2015-02-06
+--- -------------------------------------------
+[ADD] - Ability to rotate random content in campaign subject and content by using [RANDOM_CONTENT:a|b|c] tag
+[ADD] - Ability to enable/disable delivery servers in backend and customer area
+[ADD] - Ability to copy delivery servers in backend and customer area
+[ADD] - Ability to enable/disable bounce servers in backend and customer area
+[ADD] - Ability to copy bounce servers in backend and customer area
+[ADD] - Ability to enable/disable feedback loop servers in backend and customer area
+[ADD] - Ability to copy feedback loop servers in backend and customer area
+[ADD] - Campaigns for customers marked as inactive are now automatically paused
+[ADD] - Ability to set custom timeout limit when loading segments
+[ADD] - ElasticEmail Web API Support
+[ADD] - Ability to decide if a delivery server is used for transactional emails only or for campaigns only, or for all sendings
+[ADD] - Added --verbose=0|1 flag for send-campaigns command to output in console in real time
+[ADD] - Added user groups and permission systems for all controllers actions
+[ADD] - Added delivery_servers_get_types_mapping and delivery_servers_get_customer_types_mapping filters for delivery servers
+[ADD] - Added delivery_servers_get_bounce_server_not_supported_types filter
+[ADD] - List custom redirect now supports adding urls that contain subscriber specific tags
+[ADD] - Added new queue component to work with redis and queue emails
+[ADD] - Added new command, queue command to process the queued emails from redis
+[ADD] - Settings area for redis queue
+[ADD] - Ability for delivery servers to decide if they sign emails or not when signing for domain can be done
+[ADD] - Ability to order email templates in backend gallery by using drag-and-drop
+[ADD] - Ability to order email templates in customer area by using drag-and-drop
+[ADD] - Ability to force the FROM email for delivery servers under defined conditions
+[ADD] - Ability to set the email address for bounce/fbl servers when creating them for cases when the login username isn't and email address
+[ADD] - Ability to send transactionals emails instantly for registration, together with a new option for this in backend settings
+[ADD] - Ability to mark a campaign as sent before it finishes
+[ADD] - Added campaign started at / finished at and total delivery time in campaign overview
+[ADD] - Ability to decide if customers can mark blacklisted subscribers back as confirmed subscribers and remove them from blacklist
+[ADD] - Ability to add dynamic tag for list segment condition values. Supported value tags: [EMPTY], [DATE], [DATETIME], [BIRTHDATE]
+[ADD] - Added new segment conditions: NOT_STARTS_WITH and NOT_ENDS_WITH
+[ADD] - Added new custom field types, date, datetime and textarea
+[ADD] - Added X-Mw-Customer-Uid, X-Mw-Customer-Gid, List-Id and X-Report-Abuse headers for campaigns
+[ADD] - Ability to select the scheme for system urls in settings area
+[ADD] - Added ability to unsubscribe subscribers from other lists when they subscribe/unsubscribe to/from certain lists
+[ADD] - Ability to view delivery servers usage logs in backend.
+[ADD] - Ability to send a campaign to subscribers who previosuly did or didn't opened another campaign
+[ADD] - Added campaign report abuse area so subscribers can report abuse and administrators see them. Customers will also see abuses per campaign basis
+[ADD] - Added ability to remove blacklisted subscribers after a certain number of days
+[ADD] - Added the ability to import/export delivery servers
+[ADD] - Added security measures against brute force attacks for login/register/forgot password in backend and customer areas
+[ADD] - Added the ability to send custom welcome message after customer registration
+[ADD] - Added ability to add more complex settings pages to themes by defining a public function settingsPage in themes
+[ADD] - Backend area to list what cron jobs must be added
+[ADD] - Backend area to list PHP info
+[ADD] - Added ability to inherit and modify campaign sending settings into customer and customer groups
+[ADD] - Added tel/callto/ftps support in html purifier for links
+[BUG] - Fixed duplicate bounce logs in some cases
+[BUG] - Sending domains failing verification in some cases
+[BUG] - Leadersend web api save failure for customers
+[BUG] - Invalid dkim signature under certain cases
+[BUG] - Fixed campaign graphs when rates used commas instead of dots for decimal representation
+[BUG] - IOFilter allowing encoded input to be displayed instead of it being removed
+[BUG] - SwiftMailer DKIM Signer requires php 5.3 in order to work, now the system simply doesn't sign if php version < 5.3
+[BUG] - ElFinder used relative path for referencing assets in backend
+[CHG] - Send transactional email command has been changed to make use of the newly implemented send() method
+[CHG] - Allow in the installer to use dashes in database names
+[CHG] - Campaigns aren't scheduled 30 minutes ahead anymore
+[CHG] - When tracking domains used, the images urls will also be changes and all tracking urls will be forced on http
+[CHG] - Campaigns and lists aren't deleted from the web interface anymore. They are marked as deleted and passed to the daily cron for removal
+[CHG] - All logic for fetching subscribes into a campaign has been moved in the campaign model
+[UPD] - Updated CKEditor to latest version
+[UPD] - Update Yii Framework to latest version
+[MSC] - Multiple other small changes
+
+--- -------------------------------------------
+--- Version 1.3.4.9 - 2014-10-29
+--- -------------------------------------------
+[ADD] - Added ability to use Mailgun web api with automatic web hooks support
+[ADD] - Added ability to use Sendgrid web api with automatic web hooks support
+[ADD] - Added ability to use Leadersend web api
+[ADD] - Added new rules for bounce processing
+[ADD] - Added support for attachments when using amazon SES Web API
+[ADD] - Added ~500 new rules for hard and soft bounces
+[ADD] - Added ability to allow/deny customers to delete their own campaigns
+[ADD] - Added ability to allow/deny customers to delete their own lists and/or subscribers
+[ADD] - Added the IP Address of subscriber in the subscribers list
+[ADD] - Added ability to decide if customers are allowed to segment their lists or not
+[ADD] - Added ability to set the number of segment conditions a customer can add
+[ADD] - Added ability to assign delivery servers to customer groups
+[ADD] - Added ability to copy segments
+[ADD] - Added segments to be copied when a list is copied
+[ADD] - Added ability to split big lists into multiple smaller ones
+[ADD] - New cron job to archive campaigns data for faster processing
+[BUG] - Aws SDK not included in composer vendor folder
+[BUG] - List segments values casting
+[BUG] - Delivery servers using web api didn't save hooks under certain circumstances
+[ENH] - Improved Amazon SNS topic/subscription arn logic
+[ENH] - Better error messages for exec when calling openssl for sending domains
+[ENH] - Campaign delivery logs are now having the ability to be archived
+[ENG] - Rewrote the queries for process-delivery-and-bounce-log command
+[ENH] - Multiple performance improvements
+
+--- -------------------------------------------
+--- Version 1.3.4.8 - 2014-10-10
+--- -------------------------------------------
+[ADD] - Campaign api endpoint now accepts group_uid and delivery_servers params
+[ADD] - Added ability to manage options for invoices
+[ADD] - Added ability to email invoices
+[ADD] - Added ability to update from command line by using the "update" command
+[ADD] - Added ability to add in {frontend|backend|customer}/assets/js/ the file app-custom.js to be autoloaded for easier customization
+[ADD] - Added ability to add in {frontend|backend|customer}/assets/css/ the file style-custom.css to be autoloaded for easier customization
+[ADD] - Added ability to use Amazon SES web api with automatic Amazon SNS support (does not support attachments and embed images for now)
+[ADD] - Added ability to use Mandrill web api with automatic web hooks support
+[ADD] - Added ability to load custom bounce rules file (rules-custom.php) from apps/common/vendors/BounceHandler/ folder
+[ADD] - Added ability to export segment subscribers
+[ADD] - Added support for map/area in the html parser
+[BUG] - Backend templates addition for new installs was failing
+[BUG] - List pages not doing redirect when single opt it enabled and custom redirect extension used
+[CHG] - Sending domains feature various changes and added the ability to lock the domain on customer
+[CHG] - NotifyManager can handle console messages
+[CHG] - DeliveryServer::sendEmail will now return an array with various info on success instead of boolean true
+[CHG] - Bounce handler changes
+[UPD] - Updated jquery circliful plugin
+[UPD] - Updated ckeditor to version 4.4.5
+
+--- -------------------------------------------
+--- Version 1.3.4.7 - 2014-10-01
+--- -------------------------------------------
+[ADD] - Added backend area to define email templates for templates gallery
+[ADD] - Added templates gallery in customers area and ability to import from system gallery(from system defined)
+[ADD] - Added ability for customers to copy their own templates
+[ADD] - Added ability to use custom HtmlPurifier class
+[ADD] - Added ability to load custom HtmlPurifier configuration file (htmlpurifier-custom.php)
+[ADD] - Added htmlpurifier custom support for most common html5 tags
+[ADD] - Added ability to manage and select company/list industry
+[ADD] - Added list industry stats for campaigns
+[ADD] - Added forward to a friend feature
+[ADD] - Added forward to a friend reports area for each campaign
+[ADD] - Added [FORWARD_FRIEND_URL] and [CAMPAIGN_NAME] new tags
+[ADD] - Added ability to inject Google UTM tags into campaign template links
+[ADD] - Added ability for users and customers to upload their own avatars as part of the profile setup
+[ADD] - Added new delivery server type, TcpStream to be used with the mailwizz-tcp-stream custom built binary
+[ADD] - Added ability to mailer interface to also write logs not just read
+[ADD] - Added Facebook login/register
+[ADD] - Added Twitter login/register
+[ADD] - Added ability to send mass emails to customers/customer groups
+[ADD] - Added sending domains management for backend/customer area for a better inbox rate
+[ADD] - Added ability to DKIM sign the emails for sending domains
+[ADD] - Added ability for administrators to force sending domain verification for campaigns
+[ADD] - Added following console action hooks: console_command_send_campaigns_before_process and console_command_send_campaigns_after_process
+[ADD] - Added following console action hooks: console_command_transactional_emails_before_process and console_command_transactional_emails_after_process
+[ADD] - Added following console action hooks: console_command_bounce_handler_before_process and console_command_bounce_handler_after_process
+[ADD] - Added following console action hooks: console_command_feedback_loop_handler_before_process and console_command_feedback_loop_handler_after_process
+[ADD] - Added following console action hooks: console_command_process_delivery_and_bounce_log_before_process and console_command_process_delivery_and_bounce_log_after_process
+[ADD] - Added the ability to view PDF invoices for the price plans orders
+[ADD] - Added the [DIRECT_UNSUBSCRIBE_URL] tag which once inserted acts like [UNSUBSCRIBE_URL] but it unsubscribes directly if the list uses single opt out
+[ADD] - Added new api endpoint for creating customers when registration is enabled
+[ADD] - List unsubscribe header makes use of tracking domains
+[BUG] - Under certain load not all tracking urls were saved
+[BUG] - Campaigns multi lists merging failed when last list had no segment
+[CHG] - The send campaign command has been changed drastically
+[CHG] - The bash script spawning multiple campaigns(send-parallel-campaigns) has been changed
+[CHG] - Email blacklist will propagate in all lists for all customers
+[ENH] - Improved ckeditor configuration to properly handle chars in special cases
+[ENH] - Better segmentation filtering for numerical values (ints/floats)
+[ENH] - Included Multiselect/Dropdown in lists embed forms
+[RMV] - Removed ability to use recursive campaign sending from command line, too many issues with it
+[UPD] - Updated jquery circliful plugin
+[UPD] - Updated ckeditor to version 4.4.4
+
+--- -------------------------------------------
+--- Version 1.3.4.6 - 2014-07-13
+--- -------------------------------------------
+[ADD] - Added ability to search lists
+[ADD] - New tags: [SUBSCRIBER_DATE_ADDED], [SUBSCRIBER_DATE_ADDED_LOCALIZED], [DATE], [DATETIME]. [DATE] and [DATETIME] tags accept a format param to format the date, i.e: [DATE FORMAT="Y/m/d"]
+[ADD] - Added ability to set the email FROM when sending test emails
+[ADD] - Added "Date added" column to the list of subscribers
+[ADD] - Added graphs for campaign overview
+[ADD] - Added ability to import subscribers from text(.txt) files
+[ADD] - Added new action hooks in send-campaign command: console_command_send_campaigns_before_send_to_subscriber, console_command_send_campaigns_after_send_to_subscriber and console_command_send_campaigns_campaign_sent
+[ADD] - Added new filter hook in send-campaign command: console_command_send_campaigns_campaign_custom_headers
+[ADD] - Subscribe/Unsubscribe stats can be send to multiple addresses at once
+[ADD] - Campaign finish notification can be send to multiple addresses at once
+[ADD] - Included all form fields and their values in the subscribe notification email for customer
+[ADD] - Added ability to notify users when a new customer registers
+[ADD] - Added ability to see campaigns delivery logs from backend
+[ADD] - Added ability to see campaigns bounce logs from backend
+[ADD] - Added ability to manage transactional emails in backend
+[ADD] - Added settings area for system urls, use with caution!
+[ADD] - Added ability to use tracking domains
+[ADD] - Added ability to add notification message for all customers or for certain group
+[ADD] - Added ability to set the default from email and from name in delivery servers
+[ADD] - Added ability to parse dynamic tags for delivery server custom headers, these tags are supported for now: [CAMPAIGN_UID], [SUBSCRIBER_UID], [SUBSCRIBER_EMAIL]
+[BUG] - Incorrect campaign time in timepicker
+[BUG] - Undefined variable in transactional emails console command
+[BUG] - Improper call to CommonHelper from NetDnsHelper causing the app to not send campaigns when remote DNS enabled!
+[BUG] - Improper column alias in database import action for lists
+[BUG] - Invalid email params assignment for mailer plugins resulting in not applying throttle/antiflood limits
+[BUG] - Internal Server error when importing, under certain PHP versions
+[CHG] - Changed the system mailers and delivery servers logic, this will require all delivery servers to be revalidated!
+[ENH] - Fixed the slow queries for counting distinct subscribers in dashboards (spinning wheel remains stuck)
+[ENH] - Auto append hostname if missing in the email address, this specific to PMTA configs.
+[ENH] - Improved campaign template tag parsers
+[ENH] - Improved the XML and JSON feed parsers
+[ENH] - Installer tries to force chmod to 0777 now on files that are not writable and should be
+[ENH] - Improved the overall application performance and speed
+[UPD] - Updated Yii framework to version 1.1.15
+[UPD] - Updated CKEditor to version 4.4.2
+
+--- -------------------------------------------
+--- Version 1.3.4.5 - 2014-06-15
+--- -------------------------------------------
+[ADD] - Ability to inject email footers in campaigns, globally but also for customer groups
+[ADD] - Added ability to place offline orders
+[ADD] - Added "layout_footer_html" action hook to push html in app footer if needed
+[ADD] - New extension, Html Blocks to push html content
+[ADD] - Multiselect for list fields
+[ADD] - Added currecies management
+[ADD] - Added taxes management
+[ADD] - Added countries management
+[ADD] - Added zones management
+[ADD] - Added database importer
+[ADD] - Added ability to manage order notes
+[ADD] - Added domain policies for delivery servers
+[ADD] - Added ability to send campaigns to multiple lists/segments at once
+[ADD] - Added ability to sync email lists
+[ADD] - Added landing page for when deleting a list to show everything that will actually be removed
+[ADD] - Added email notifications for users/customers when a order is made
+[ADD] - Added transactional emails support
+[ADD] - Added transactional emails API endpoint
+[ADD] - Added new cron job to process the transactional emails
+[ADD] - Ability to change subscriber custom field upon campaign open, useful to segment based on campaign opens
+[ADD] - Ability to change subscriber custom field upon campaign click on certain url, useful to segment based on campaign link clicks
+[ADD] - Added the abilitry to retry failed sends up to 3 times and then give up
+[ADD] - Added the ability to send only plain text emails
+[ADD] - Added new filter hook: mailer_not_allowed_custom_from_domain_patterns
+[ADD] - Added ability to add database port and use unix socket to the installer
+[BUG] - Dropdown custom field invalid row addition
+[CHG] - Payment gateways logic has been changed
+[CHG] - Removed ability to add custom from header since it caused multiple problems. the system will now detect this by it's own.
+[CHG] - All DeliveryServer classes where changed drastically
+[CHG] - The mailers code has changed
+[CHG] - Changed probability algorithm for delivery server picking
+[CHG] - Changed the way picking datetime for campaign sending works
+[CHG] - Only unique email addresses are counted against the customer quota for subscribers, duplicates are counted as a single email
+[CHG] - Guest actions, such as forgot password, registration, etc, for both users and customers, will use the transactional emails feature
+[CHG] - The campaign delivery log table got two new columns, retries and max_retries
+[CHG] - Small changes to the installer
+
+--- -------------------------------------------
+--- Version 1.3.4.4 - 2014-05-21
+--- -------------------------------------------
+[ADD] - Added Minutes / Hours to autoresponders timeframe
+[ADD] - Added price plans in the monetization module
+[ADD] - Added payment handling into the monetization module
+[ADD] - Added orders handling in the monetization module
+[ADD] - Added promo codes in the monetization module
+[ADD] - Added Paypal Payment Gateway extension for payment in the monetization module
+[ADD] - Ability to require company info on registration
+[BUG] - Fixed various other small issues
+[ENH] - Improved autoresponder logic
+
+--- -------------------------------------------
+--- Version 1.3.4.3 - 2014-05-11
+--- -------------------------------------------
+[ADD] - Added the mutex component for locking processes
+[ADD] - console_command_daily action hook
+[ADD] - Added autoresponders
+[ADD] - Added ability to create campaign groups
+[ADD] - Added ability to group campaigns
+[ADD] - Added customer groups with permissions, limits, quotas, actions, etc
+[ADD] - Added ability to reset the sending quota for customers
+[ADD] - Added ability to reset the sending quota for customer groups
+[ADD] - Added ability to add dropdowns for list custom fields
+[ADD] - Added new extension to allow custom assets (css/js) for list forms
+[ADD] - Added new extension to allow custom webhooks for list form data
+[ADD] - Added ability to move/copy subscribers between the lists based on campaign urls clicks
+[ADD] - Added ability to move/copy subscribers between the lists based on campaign opens
+[ADD] - Ability to lock servers so customer cannot change them
+[ADD] - Ability to associate servers with customers from backend area
+[ADD] - New sending quota system, as part of group perms
+[ADD] - Registration system and backend area to control it
+[BUG] - Delivery servers reseted to inactive because of bounce servers
+[CHG] - All cron jobs are using the new mutex component for locking
+[CHG] - Bounce/FBL command altered once again
+[CHG] - Switched from `which` to `command -v` for checking linux commands availability
+[ENH] - Improved parallel delivery command
+[ENH] - Campaigns landing page shows more info now
+[UPD] - Updated CKEDITOR extension
+
+--- -------------------------------------------
+--- Version 1.3.4.2 - 2014-04-17
+--- -------------------------------------------
+[ADD] - Added imap timeout for bounce/fbl processing
+[ADD] - Ability to import html pages from url for campaign templates
+[ADD] - Ability to copy lists
+[ADD] - Added PHPMailer as a faster alternative to swiftmailer
+[ADD] - Ability to select which mailer to use
+[ADD] - Import/Export for backend blacklisted emails
+[ADD] - Added ability to run bulk actions from various sources(file/text area) against list subscribers
+[ADD] - Ability to embed images in template instead of loading them remotely
+[ADD] - Ability to minify the email templates for easier delivery
+[CHG] - Rewrote the mailers logic to be able to use more than one mailer
+[CHG] - The MailSender class has been deprecated, if you extended or rely on it externally please update your code!!!
+[ENH] - Paused campaigns can now be edited
+[ENH] - Improved processing time for sending campaigns
+[ENH] - Updated SwiftMailer to latest version
+[ENH] - Better file extension support for mimes via Yii::app()->extensionMime->get('ext');
+
+--- -------------------------------------------
+--- Version 1.3.4.1 - 2014-03-20
+--- -------------------------------------------
+[BUG] - Customer login page fix
+[BUG] - Temporary dir issues
+[BUG] - Cron exec data retrival
+
+--- -------------------------------------------
+--- Version 1.3.4 - 2014-03-16
+--- -------------------------------------------
+[ADD] - Ability to process campaigns in parallel (high delivery speed)
+[ADD] - Ability for send-campaigns command to process recursive
+[ADD] - Ability for customers to add their own delivery and bounce servers
+[ADD] - Ability for admins to control customer server options
+[ADD] - Added "option" command to fetch app options from command line
+[ADD] - Option for the admin to set default page size(pagination) for backend and customers area
+[ADD] - Option for customers to select the page size(pagination)
+[ADD] - Send-campaigns command is now aware of the system status and will restore states if improper shutdown
+[ADD] - Notification system so that you know when a new version is available for download
+[ADD] - Option to decide if mime types detection is enabled for importing csv files
+[ADD] - before_view_file_content and after_view_file_content action hooks
+[ADD] - before_active_form, before_active_form_fields, after_active_form_fields, after_active_form action hooks
+[ADD] - before_grid_view, after_grid_view action hooks
+[ADD] - grid_view_properties and grid_view_columns filter hooks
+[ADD] - Clear documentation in view files
+[ADD] - controller_action_save_data filter hook
+[ADD] - register_scripts and register_styles filter hooks
+[ADD] - New extension that allows redirecting for list forms to custom urls
+[ADD] - Full RTL support based on locale
+[ADD] - Added NetDnsHelper class file
+[ADD] - Customers can have hourly quota for sending emails now
+[ADD] - Email Feedback Loop(FBL/ARF) processing for customer and user
+[ADD] - Console command (feedback-loop-handler) to process feedback emails
+[ADD] - Backend area to control customer hourly quota counters against delivery(campaigns/tests/lists)
+[ADD] - New console command(cron job), called "daily" which replaces "process-subscribers" and adds new logic
+[ADD] - Backend area now shows app version, processing time and memory usage
+[BUG] - Fixed a bug where not all themes instances were returned
+[BUG] - Fixed a bug where app reported writeabale files when they were not
+[BUG] - Fixed a bug in MailSender where invalid value was returned
+[BUG] - HooksManager allowed same callback to be bound multiple times to an action/filter
+[CHG] - Various changes in the application hooks
+[CHG] - Re-arranged backend left side items and settings
+[CHG] - The hook customer_campaigns_overview_after_tracking_stats will now receive a CAttributeCollection as only param
+[CHG] - delivery_server_before_send_email and delivery_server_after_send_email hooks are changed now
+[CHG] - The command "process-subscribers" has been removed, all logic placed into the new "daily" command
+[CHG] - Refactored left side navigation in backend and customer area
+[ENH] - Improved bounce handling detection rules
+[ENH] - Improved command for bounce handling
+[ENH] - Improved CLI detection
+[ENH] - All command line calls where updated to use a new structure
+[ENH] - Install will use exec() if available to detect your PHP binary
+[ENH] - Multiple enhancements for delivery servers
+[ENH] - Improved the CSS parser
+[ENH] - Improved importing speed(big time!)
+[ENH] - Remote blacklist detection will use dig via exec() if available with fallback on php implementation
+[ENH] - Faster installer and upgrade process (mysql queries changes)
+[ENH] - BounceHandler now makes difference between FBL and Bounces
+[ENH] - Refactored the Option models
+[MSC] - Many other small improvements/bug fixes and enhancements
+
+--- -------------------------------------------
+--- Version 1.3.3 - 2014-02-02
+--- -------------------------------------------
+[ADD] - Ability to add custom headers for each delivery server
+[ADD] - Ability to set custom "From" header for delivery servers that support it
+[ADD] - Backend area to manage the application log
+[ADD] - Added Campaign Stats Processor, attachable to any campaign to extract stats
+[ADD] - Ability to export basic campaign stats
+[ADD] - Ability to set plain text version of email manually
+[ADD] - Ability to remove bounced emails per campaign basis from campaign reports area
+[ADD] - Backend area to control which campaign template tags are required
+[ADD] - Backend area to control whether the customers can choose delivery servers for campaigns
+[BUG] - Delivery via pickup directory fix
+[BUG] - Campaign servers were not copied when campaign duplicated
+[BUG] - API PUT/DELETE Methods failed under certain circumstances.
+[CHG] - Removed a few tracking widgets in favor of simple view files based on Campaign Stats Processor
+[CHG] - Bounce policy changed, once an email returns it is considered hard bounce until it proves to be a soft bounce
+[ENH] - Better generation of plain text emails when requested
+[ENH] - Upload zip file via API for when creating a campaign and/or a template.
+[ENH] - Updated the campaigns/lists/templates endpoint and the PHP SDK (see examples folder in sdk)
+[ENH] - Full screen for Activity Map Extension
+[ENH] - Translation messages are collected from API app too
+
+--- -------------------------------------------
+--- Version 1.3.2 - 2014-01-19
+--- -------------------------------------------
+[ADD] - Ability to blacklist entire domain by adding *@domain.com
+[ADD] - Check emails against remote DNSBL services
+[ADD] - Backend area settings for email spam check against spam lists
+[ADD] - Ability to use local sendmail as a delivery server
+[ADD] - Ability to use php's inbuilt mail() function to deliver email
+[ADD] - Ability to deliver email via Pickup Directory method
+[ADD] - Ability for each campaign to be restarted if it gets stuck
+[ADD] - Ability to choose delivery servers per campaign basis
+[ADD] - Ability to add campaign attachments
+[ADD] - Settings area to control campaign attachments
+[ADD] - Template API endpoint now returns the template screenshot too
+[BUG] - Fixed a bug where email was imported even if blacklisted
+[BUG] - Fixed a bug where tracking links will not work when sending multiple campaigns in paralel
+[CHG] - Blacklisted emails are not exported anymore
+[CHG] - Removed reset area from backend and console commands
+[ENH] - Added a few missing translation strings
+[ENH] - Better behavior for various problematic MySQL configurations
+
+--- -------------------------------------------
+--- Version 1.3.1 - 2013-12-27
+--- -------------------------------------------
+
+[ADD] - Option to copy/duplicate campaigns
+[ADD] - Auto-generate plain text campaign email based on the html version
+[ADD] - Per campaign option to turn on/off plain text emails, on by default
+[ADD] - Campaign overview delivery rate estimate
+[ADD] - Campaign overview delivery completition estimate
+[ADD] - Option to be notified when campaign finish sending, email will contain various stats
+[ADD] - Campaign spam score check
+[ADD] - Installer can now create the first customer if desired
+[BUG] - When single opt-out enabled, unsubscribes were not tracked
+[BUG] - Frontend missing notify.js script file
+[CHG] - Campaign last open is based on open tracking rather than being based on campaign table column
+[ENH] - Gmail storing images fix for tracking opens
+[ENH] - Import / Export improvements
+[ENH] - Hidden form fields are now visible to customers when updating/creating subscribers
+[ENH] - Better handling of sending campaigns from command line
+[ENH] - Better visual number formatting across the customer app
+[ENH] - Better hourly limits and delivery server availability
+[ENH] - Better installer
+[ENH] - Updated twitter bootstrap to latest version
+[ENH] - Updated ckeditor to latest version
+[ENH] - Updated Urlify library
+
+--- -------------------------------------------
+--- Version 1.3 - 2013-12-10
+--- -------------------------------------------
+
+[ADD] - Themes support
+[ADD] - Ability to use remote XML(RSS) feeds inside campaigns
+[ADD] - Ability to use remote JSON feeds inside campaigns
+[ADD] - New per campaign options to decide if enable url tracking, xml/json feeds
+[ADD] - Support for bulk actions for subscribers (subscribe, unsubscribe, delete)
+[ADD] - You can choose now between single/double opt-in/opt-out for each list
+[ADD] - Iframe embed for forms
+[CHG] - Re-arranged backend left menu
+[ENH] - Better campaign url tracking
+[ENH] - Campaign stats visible only if options for those stats are enabled
+[ENH] - Switch to database sessions instead of native sessions
+[ENH] - Campaign schedule is now shown in customer locales
+[ENH] - Fixed various small bugs and text typos
+
+--- -------------------------------------------
+--- Version 1.2 - 2013-12-01
+--- -------------------------------------------
+
+[ADD] - Added campaign activity map extension (show clicks, opens and unsubscribes on a map)
+[ADD] - Added ip location services backend area
+[ADD] - Added the "Ip location - ipinfodb.com" location service extension
+[ADD] - Added the "Ip location - ipinfo.io" location service extension
+[ADD] - Added the "Ip location - freegeoip.net" location service extension
+[ADD] - Added the "Ip location - locatorhq.com" location service extension
+[ADD] - Added the "Ip location - telize.com" location service extension
+[ADD] - File manager for ckeditor (users and customers)
+[ADD] - Customers have their own web space for campaign assets now, separate of template files
+[ADD] - Now it's possible to upload templates from campaigns area too
+[ADD] - Unsubscribes widget in campaign overview area
+[ADD] - Unsubscribes area for campaign reports
+[ADD] - New cron job to check subscribers (unsubscribed and unconfirmed)
+[ADD] - New settings area for check subscribers cron
+[ADD] - Added email fallback for password sending in backend/customer area
+[ADD] - Added "Update Workers" that will carry the hard work for each version update
+[CHG] - Create/Update/Delete subscribers from customer panel will not log messages anymore
+[CHG] - Removed "total for delivery" from stats since it was confusing always changing depending on the list/segment subscribers
+[CHG] - List subscribers api enpoint now returns all subscribers, no matter the status
+[ENH] - Translate extension will now collect messages from console application too
+[ENH] - Added new hooks for frontend campaign open, campaign link track and unsubscribe track
+[ENH] - CKeditor got a settings page(settings for file manager)
+[ENH] - Customers and users got their own uids now
+[ENH] - Subscribers status can now be edited
+[ENH] - Subscribers can now be grouped and searched by status
+[ENH] - Campaign overview boxes re-arranged
+[ENH] - Improved the subscribe/unsubscribe process
+
+--- -------------------------------------------
+--- Version 1.1 - 2013-11-24
+--- -------------------------------------------
+
+[ADD] - Added multi-language, translation and internationalization support
+[ADD] - Added the Translate extension(collect messages for easier translation)
+[ADD] - Added CommonHelper class, AssetsPath class, LanguageHelper class
+[ADD] - Added the "version update" backend area and the logic to perform version updates
+[BUG] - Fixed a bug where customers could see other customers templates when creating campaigns
+[BUG] - Fixed a bug where customers could see other customers lists when creating campaigns
+[CHG] - Renamed the HttpRequest class into BaseHttpRequest to avoid naming collision when pecl HttpRequest class is installed.
+[CHG] - Modified view files and controllers to split translations in multiple files rather than large ones.
+[CHG] - Moved config data into it's own separate file(added main-custom.php config file) for better handling on updates.
+[ENH] - Updated bootstrap to latest version
+[ENH] - Added the ability to return the main app instance instead of running it.
+[ENH] - Extensions can now register their own landing page for settings/info/etc
+[ENH] - Split the DB schema and inserts for better handling
+[ENH] - API will become unavailable if site offline for update/maintenance, ignoring the api status setting.
+[ENH] - Console tasks will stop when site offline and restart when site online.
+[ENH] - Datepicker / CKeditor make use of the multi-language feature
+
+
+--- -------------------------------------------
+--- Version 1.0 - 2013-11-15
+--- -------------------------------------------
+
+- Initial release

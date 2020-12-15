@@ -1,0 +1,117 @@
+.modal.modal-search {
+    background: transparent!important;
+}
+.modal.modal-search .modal-dialog {
+    width: 280px;
+    margin: 10px auto ;
+}
+@media only screen and (min-width: 768px) {
+    .modal.modal-search .modal-dialog {
+        width: 600px;
+        margin: 100px auto ;
+    }
+}
+@media only screen and (min-width: 992px) {
+    .modal.modal-search .modal-dialog {
+        width: 700px;
+    }
+}
+.modal.modal-search .modal-dialog .modal-content {
+    position: relative;
+    border-radius: 5px;
+    outline: none!important;
+}
+.modal.modal-search .search-wrapper .search-input {
+    position: relative;
+}
+.modal.modal-search .search-wrapper .search-input:before {
+    font-family: fontAwesome;
+    font-weight: 900;
+    content: "\f002";
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+}
+.modal.modal-search .search-wrapper .search-input input[type="text"],
+.modal.modal-search .search-wrapper .search-input input[type="search"],
+.modal.modal-search .search-wrapper .search-input input[type="password"],
+.modal.modal-search .search-wrapper .search-input input[type="email"],
+.modal.modal-search .search-wrapper .search-input input[type="tel"],
+.modal.modal-search .search-wrapper .search-input input[type="number"],
+.modal.modal-search .search-wrapper .search-input input .form-control {
+    padding: 0 35px 0 35px;
+    border: 0 solid transparent;
+    margin-bottom: 0;
+    background-color: transparent!important;
+    font-size: 24px;
+}
+.modal.modal-search .search-wrapper .search-input i {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    z-index: 1;
+    visibility: hidden;
+    font-size: 24px;
+}
+.modal.modal-search .search-wrapper .search-input.loading i {
+    visibility: visible;
+}
+.modal.modal-search .search-wrapper .search-input-results {
+    border-top: 1px solid #c1c1c1;
+    margin-top: 10px;
+    max-height: 455px;
+    overflow: scroll;
+}
+.modal.modal-search .search-wrapper .search-input-results ul {
+    list-style: none;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+.modal.modal-search .search-wrapper .search-input-results ul li {
+    border-top: 1px solid #e8e8e8;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    font-size: 15px;
+    margin-top: -1px;
+}
+.modal.modal-search .search-wrapper .search-input-results ul li:first-child {
+    border-top: 0;
+}
+.modal.modal-search .search-wrapper .search-input-results ul li.search-heading > span {
+    font-size: 12px;
+    text-transform: uppercase;
+    display: block;
+    margin-top: -6px;
+    padding: 6px 9px;
+    background-color: #e8e8e8;
+}
+.modal.modal-search .search-wrapper .search-input-results ul li a {
+    color: #333;
+}
+.modal.modal-search .search-wrapper .search-input-results ul li > i {
+    margin-right: 5px;
+}
+.modal.modal-search .search-wrapper .search-input-results ul li ul {
+    margin: -7px 0 -6px 0;
+}
+.modal.modal-search .search-wrapper .search-input-results ul li ul li {
+    margin-left: 25px;
+}
+.modal.modal-search .search-wrapper .search-input-results ul li ul li:first-child {
+    margin-top: 6px;
+    border-top: 1px solid #e8e8e8;
+}
+.modal.modal-search + .modal-backdrop {
+    background-color: #000000!important;
+}
+.modal.modal-search + .modal-backdrop.in {
+    opacity: .8;
+    filter: alpha(opacity=80);
+}
+.search-result-item-buttons a {
+    color: #ffffff!important;
+    margin-left: 5px;
+}
